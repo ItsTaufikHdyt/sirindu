@@ -1,0 +1,16 @@
+@extends('admin::layouts.app')
+@section('title')
+Admin
+@endsection
+@section('title-content')
+About
+@endsection
+@section('item')
+Portfolio
+@endsection
+@section('item-active')
+About
+@endsection
+@section('content')
+tes
+@endsection

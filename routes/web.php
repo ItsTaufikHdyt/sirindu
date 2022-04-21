@@ -26,27 +26,24 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 All Normal Users Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:user'])->group(function () {
-  
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-});
-  
+// Route::middleware(['auth', "prefix" => "user/", 'user-access:user'])->group(function () {
+//     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// });
+
 /*------------------------------------------
 --------------------------------------------
 All Super Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:super-admin'])->group(function () {
-  
-    Route::get('/super-admin/home', [App\Http\Controllers\HomeController::class, 'superAdminHome'])->name('super.admin.home');
+Route::middleware(['auth', 'user-access:super-admin'])->prefix('super-admin/')->group(function () {
+    Route::get('home', [App\Http\Controllers\AdminController::class, 'superAdminHome'])->name('super.admin.home');
 });
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::middleware(['auth', 'user-access:admin'])->group(function () {
-  
-    Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'managerHome'])->name('admin.home');
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin/')->group(function () {
+    Route::get('home', [App\Http\Controllers\AdminController::class, 'adminHome'])->name('admin.home');
 });

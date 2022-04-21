@@ -23,24 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return 'user';
-    }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function superAdminHome()
-    {
-        return 'super admin home';
-    }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function managerHome()
-    {
-        return 'manager home';
+        return view('home');
     }
 }
