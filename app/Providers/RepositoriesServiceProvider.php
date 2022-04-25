@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Repositories\Admin\User\UserRepository;
+use App\Repositories\Admin\Core\User\UserRepositoryInterface;
+
 class RepositoriesServiceProvider extends ServiceProvider
 {
     /**
@@ -23,19 +26,9 @@ class RepositoriesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->app->bind(
-        //     AboutRepositoryInterface::class,
-        //     AboutRepository::class,
-        //     EducationRepositoryInterface::class,
-        //     EducationRepository::class,
-        //     ExperienceRepositoryInterface::class,
-        //     ExperienceRepository::class,
-        //     TagsRepositoryInterface::class,
-        //     TagsRepository::class,
-        //     SkillsRepositoryInterface::class,
-        //     SkillsRepository::class,
-        //     PortfolioRepositoryInterface::class,
-        //     PortfolioRepository::class,
-        // );
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class,
+        );
     }
 }

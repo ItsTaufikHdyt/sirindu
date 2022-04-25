@@ -37,6 +37,9 @@ All Super Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:super-admin'])->prefix('super-admin/')->group(function () {
     Route::get('home', [App\Http\Controllers\AdminController::class, 'superAdminHome'])->name('super.admin.home');
+//User Route List
+    Route::get('user', [App\Http\Controllers\AdminController::class, 'user'])->name('super.admin.user');
+    Route::post('store-user', [App\Http\Controllers\AdminController::class, 'storeUser'])->name('super.admin.storeUser');
 });
 
 /*------------------------------------------

@@ -11,25 +11,36 @@
 	<div class="menu-block customscroll">
 		<div class="sidebar-menu">
 			<ul id="accordion-menu">
+				@if (Auth::user()->type == 'super-admin')
 				<li>
-					<a href="#" class="dropdown-toggle no-arrow">
-						<span class="micon dw dw-home"></span><span class="mtext">Home</span>
+					<a href="{{Route('super.admin.home')}}" class="dropdown-toggle no-arrow">
+						<span class="micon fa fa-home"></span><span class="mtext">Home</span>
 					</a>
 				</li>
+				@elseif (Auth::user()->type == 'admin')
+				<li>
+					<a href="{{Route('admin.home')}}" class="dropdown-toggle no-arrow">
+						<span class="micon fa fa-house"></span><span class="mtext">Home</span>
+					</a>
+				</li>
+				@endif
 				<li class="dropdown">
 					<a href="javascript:;" class="dropdown-toggle">
-						<span class="micon dw dw-house-1"></span><span class="mtext">Data</span>
+						<span class="micon fa fa-database"></span><span class="mtext">Data</span>
 					</a>
 					<ul class="submenu">
-						<li><a href="#">Data Anak</a></li>
 						<li><a href="#">Data Ibu</a></li>
+						<li><a href="#">Data Ibu Hamil</a></li>
+						<li><a href="#">Data Anak</a></li>
 					</ul>
 				</li>
+				@if (Auth::user()->type == 'super-admin')
 				<li>
-					<a href="#" class="dropdown-toggle no-arrow">
-						<span class="micon dw dw-home"></span><span class="mtext">User</span>
+					<a href="{{Route('super.admin.user')}}" class="dropdown-toggle no-arrow">
+						<span class="micon fa fa-user"></span><span class="mtext">User</span>
 					</a>
 				</li>
+				@endif
 			</ul>
 		</div>
 	</div>
