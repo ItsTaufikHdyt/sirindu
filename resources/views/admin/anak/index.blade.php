@@ -3,14 +3,32 @@
 Admin
 @endsection
 @section('title-content')
-About
+Data
 @endsection
 @section('item')
-Portfolio
+Data
 @endsection
 @section('item-active')
-About
+Anak
 @endsection
 @section('content')
-tes
+<a href="{{route('admin.createAnak')}}" class="btn btn-primary">Create Data</a>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">No KK</th>
+                <th scope="col">NIK</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+@endsection
+@section('custom_scripts')
 @endsection
