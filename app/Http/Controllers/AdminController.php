@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Admin\User\UserRepository as UserInterface;
+use App\Repositories\Admin\Anak\AnakRepository as AnakInterface;
 use App\Http\Requests\Admin\User\storeUserRequest;
+use App\Http\Requests\Admin\Anak\storeAnakRequest;
+use App\Models\Anak;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -11,13 +16,22 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     protected $userRepository;
+    protected $anakRepository;
 
     public function __construct(
-        UserInterface $userRepository
+        UserInterface $userRepository,
+        AnakInterface $anakRepository
     ) {
         $this->middleware('auth');
         $this->userRepository = $userRepository;
+        $this->anakRepository = $anakRepository;
     }
+
+    /*------------------------------------------
+--------------------------------------------
+ANAK
+--------------------------------------------
+--------------------------------------------*/
 
     public function anak()
     {
@@ -26,9 +40,26 @@ class AdminController extends Controller
 
     public function createAnak()
     {
-        return view('admin.anak.create');
+        $kec = Kecamatan::all();
+        $kel = Kelurahan::all();
+        return view('admin.anak.create', compact('kec', 'kel'));
     }
 
+    public function storeAnak(storeAnakRequest $request)
+    {
+        try {
+            $anak = $this->anakRepository->storeAnak($request);
+            return view('admin.anak.index');
+        } catch (Throwable $e) {
+            return view('admin.anak.index');
+        }
+    }
+
+    /*------------------------------------------
+--------------------------------------------
+IBU
+--------------------------------------------
+--------------------------------------------*/
     public function ibu()
     {
         return view('admin.ibu.index');
