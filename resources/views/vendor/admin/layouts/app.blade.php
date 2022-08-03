@@ -8,6 +8,7 @@
     @include('admin::layouts.partials.mainheader')
     @include('admin::layouts.partials.rightsidebar')
     @include('admin::layouts.partials.leftsidebar')
+    
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
