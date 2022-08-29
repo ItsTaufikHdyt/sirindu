@@ -56,7 +56,8 @@ ANAK
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="' . route('admin.editAnak', $data->id) . '">Edit Data</a>
-                    <a class="dropdown-item" href="#">Show Data</a>
+                    <a class="dropdown-item" href="' . route('admin.chartAnak', $data->id) . '">Chart Data</a>
+                    <a class="dropdown-item" href="' . route('admin.showAnak', $data->id) . '">Show Data</a>
                     <a class="dropdown-item" href="' . route('admin.dataAnak', $data->id) . '">Data Anak</a>
                 </div>
                 </div>
@@ -86,10 +87,10 @@ ANAK
         $anak = Anak::find($id);
         $kec = Kecamatan::all();
         $kel = Kelurahan::all();
-        return view('admin.anak.edit', compact('anak','kec', 'kel'));
+        return view('admin.anak.edit', compact('anak', 'kec', 'kel'));
     }
 
-    public function updateAnak(storeAnakRequest $request,$id)
+    public function updateAnak(storeAnakRequest $request, $id)
     {
         try {
             $anak = $this->anakRepository->updateAnak($request, $id);
@@ -113,6 +114,149 @@ ANAK
         }
     }
 
+    public function showAnak($id)
+    {
+        $anak = Anak::find($id);
+        $dataAnak = DB::table('anak')
+            ->join('data_anak', 'anak.id', '=', 'data_anak.id_anak')
+            ->select('jk', 'bln', 'posisi', 'tb', 'bb')
+            ->where('data_anak.id_anak', $id)
+            ->get();
+
+        foreach ($dataAnak as $key => $data) {
+            $tinggi = $data->tb;
+            $berat = $data->bb;
+            $umur = $data->bln;
+            $posisi = $data->posisi;
+            if ($umur < 24 && $posisi == "H") {
+                $tinggi += 0.7;
+            } elseif ($umur >= 24 && $posisi == "L") {
+                $tinggi -= 0.7;
+            }
+            $tinggi = round($tinggi);
+            $var = $umur <= 24 ? 1 : 2;
+            $jk = $data->jk;
+            $bmi = round(10000 * $berat / pow($tinggi, 2), 2);
+            $imt_u = DB::table('z_score')
+                ->select('id', 'm3sd as a1', 'm2sd as b1', '2sd as c1')
+                ->where([
+                    'var' => $var,
+                    'acuan' => $umur,
+                    'jk' => $jk,
+                    'jenis_tbl' => 1,
+                ])->get();
+            $bb_u = DB::table('z_score')
+                ->select('id', 'm3sd as a2', 'm2sd as b2', '2sd as c2')
+                ->where([
+                    'acuan' => $umur,
+                    'jk' => $jk,
+                    'jenis_tbl' => 2,
+                ])->get();
+            $tb_u = DB::table('z_score')
+                ->select('id', 'm3sd as a3', 'm2sd as b3', '2sd as c3')
+                ->where([
+                    'var' => $var,
+                    'acuan' => $umur,
+                    'jk' => $jk,
+                    'jenis_tbl' => 3,
+                ])->get();
+            $bt_tb = DB::table('z_score')
+                ->select('id', 'm3sd as a4', 'm2sd as b4', '2sd as c4')
+                ->where([
+                    'var' => $var,
+                    'acuan' => $tinggi,
+                    'jk' => $jk,
+                    'jenis_tbl' => 4,
+                ])->get();
+            if ($bmi < $imt_u[0]->a1) {
+                $s1 = "Sangat Kurus";
+            } elseif ($bmi >= $imt_u[0]->a1 && $bmi < $imt_u[0]->b1) {
+                $s1 = "Kurus";
+            } elseif ($bmi >= $imt_u[0]->b1 && $bmi <= $imt_u[0]->c1) {
+                $s1 = "Normal";
+            } else {
+                $s1 = "Gemuk";
+            }
+
+            if ($berat < $bb_u[0]->a2) {
+                $s2 = "Gizi Buruk";
+            } elseif ($berat >= $bb_u[0]->a2 && $berat < $bb_u[0]->b2) {
+                $s2 = "Gizi Kurang";
+            } elseif ($berat >= $bb_u[0]->b2 && $berat <= $bb_u[0]->c2) {
+                $s2 = "Gizi Baik";
+            } else {
+                $s2 = "Gizi Lebih";
+            }
+
+            if ($tinggi < $tb_u[0]->a3) {
+                $s3 = "Sangat Pendek";
+            } elseif ($tinggi >= $tb_u[0]->a3 && $tinggi < $tb_u[0]->b3) {
+                $s3 = "Pendek";
+            } elseif ($tinggi >= $tb_u[0]->b3 && $tinggi <= $tb_u[0]->c3) {
+                $s3 = "Normal";
+            } else {
+                $s3 = "Tinggi";
+            }
+
+            if ($berat < $bt_tb[0]->a4) {
+                $s4 = "Sangat Kurus";
+            } elseif ($berat >= $bt_tb[0]->a4 && $berat < $bt_tb[0]->b4) {
+                $s4 = "Kurus";
+            } elseif ($berat >= $bt_tb[0]->b4 && $berat <= $bt_tb[0]->c4) {
+                $s4 = "Normal";
+            } else {
+                $s4 = "Gemuk";
+            }
+            $hasilx[$key] = array(
+                "bln" => $umur,
+                "tinggi" => $tinggi,
+                "berat" => $berat,
+                "imt" => $s1,
+                "bb" => $s2,
+                "tb" => $s3,
+                "bt" => $s4
+            );
+        }
+
+
+        return view('admin.anak.show', compact('anak'))->with('hasilx', $hasilx);
+    }
+
+
+    public function chartAnak($id)
+    {
+        $anak = Anak::find($id);
+        return view('admin.anak.chart', compact('anak'));
+    }
+
+    public function getChartAnak($id)
+    {
+        $tbAnak = DB::table('anak')
+            ->join('data_anak', 'anak.id', '=', 'data_anak.id_anak')
+            ->select('tb')
+            ->where('data_anak.id_anak', $id)
+            ->get();
+
+        $blnAnak = DB::table('anak')
+            ->join('data_anak', 'anak.id', '=', 'data_anak.id_anak')
+            ->select('bln')
+            ->where('data_anak.id_anak', $id)
+            ->get();
+
+        $bbAnak = DB::table('anak')
+            ->join('data_anak', 'anak.id', '=', 'data_anak.id_anak')
+            ->select('bb')
+            ->where('data_anak.id_anak', $id)
+            ->get();
+
+        return response()->json([
+            'tb' => $tbAnak,
+            'bln' => $blnAnak,
+            'bb' => $bbAnak,
+
+        ]);
+    }
+
     public function destroyAnak($id)
     {
         $this->anakRepository->destroyAnak($id);
@@ -124,11 +268,10 @@ ANAK
     public function dataAnak($id)
     {
         $anak = Anak::find($id);
-        //$dataAnak = new DataAnak();
-        //$query = $dataAnak->select('max(bln) as bulan')->first();
-        $query = DB::table('data_anak')->max('bln');
-        $bulanSekarang = $query + 1;
-        return view('admin.anak.data-anak', compact('anak','bulanSekarang'));
+        $query = DB::table('data_anak')->where('id_anak', $id)->max('bln');
+        $query === NULL ? $bulanSekarang = 0 : $bulanSekarang = $query + 1;
+        // $bulanSekarang = $query;
+        return view('admin.anak.data-anak', compact('anak', 'bulanSekarang'));
     }
 
     public function storeDataAnak(Request $request)
@@ -137,8 +280,7 @@ ANAK
             $this->anakRepository->storeDataAnak($request);
             return redirect()->route('admin.anak');
             Alert::success('Data Anak', 'Berhasil Menambahkan Data');
-            alert()->success('Title','Lorem Lorem Lorem');
-
+            alert()->success('Title', 'Lorem Lorem Lorem');
         } catch (Throwable $e) {
             return redirect()->route('admin.anak');
             Alert::error('Data Anak', 'Berhasil Menambahkan Data');

@@ -22,7 +22,6 @@
 						<span class="micon fa fa-database"></span><span class="mtext">Data</span>
 					</a>
 					<ul class="submenu">
-						<li><a href="{{route('admin.ibu')}}">Data Ibu</a></li>
 						<li><a href="{{route('admin.ibuHamil')}}">Data Ibu Hamil</a></li>
 						<li><a href="{{route('admin.anak')}}">Data Anak</a></li>
 					</ul>
@@ -38,7 +37,6 @@
 						<span class="micon fa fa-database"></span><span class="mtext">Data</span>
 					</a>
 					<ul class="submenu">
-						<li><a href="{{route('admin.ibu')}}">Data Ibu</a></li>
 						<li><a href="{{route('admin.ibuHamil')}}">Data Ibu Hamil</a></li>
 						<li><a href="{{route('admin.anak')}}">Data Anak</a></li>
 					</ul>

@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('data_anak', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_anak');
+            $table->bigInteger('id_anak')->unsigned();
             $table->integer('bln');
+            $table->string('posisi');
             $table->float('tb');
             $table->float('bb');
             $table->timestamps();
+            $table->foreign('id_anak')
+                  ->references('id')->on('anak')
+                  ->onDelete('cascade');
         });
     }
 

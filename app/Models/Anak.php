@@ -10,4 +10,13 @@ class Anak extends Model
     use HasFactory;
     protected $table = 'anak';
     protected $guarded = [];
+
+    public function kec()
+    {
+        return $this->hasMany(Kecamatan::class,'id','id_kec');
+    }
+    public function kel()
+    {
+        return $this->hasMany(Kelurahan::class,'id','id_kel');
+    }
 }

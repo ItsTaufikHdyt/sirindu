@@ -6,6 +6,7 @@ use App\Repositories\Admin\Core\Anak\AnakRepositoryInterface;
 use App\Models\Anak;
 use App\Models\DataAnak;
 use GuzzleHttp\Promise\Create;
+use Illuminate\Support\Facades\DB;
 
 class AnakRepository implements AnakRepositoryInterface
 {
@@ -77,8 +78,11 @@ class AnakRepository implements AnakRepositoryInterface
         $anak = DataAnak::create([
             'id_anak' => $request->id_anak,
             'bln' => $request->bln,
+            'posisi' => $request->posisi,
             'tb' => $request->tb,
             'bb' => $request->bb,
         ]);
     }
+
+
 }

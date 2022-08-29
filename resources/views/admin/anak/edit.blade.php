@@ -23,6 +23,7 @@ Edit Anak
 @endif
 <form method="post" action="{{route('admin.updateAnak',$anak->id)}}">
     @csrf
+    <input type="hidden" name="_method" value="PUT">
     <div class="row">
         <div class="col-md-4 col-sm-12">
             <div class="form-group">

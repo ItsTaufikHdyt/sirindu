@@ -11,4 +11,9 @@ class Kecamatan extends Model
 
     protected $table = 'kecamatan';
     protected $fillable = [];
+
+    public function anak()
+    {
+        return $this->belongsTo(Anak::class);
+    }
 }
