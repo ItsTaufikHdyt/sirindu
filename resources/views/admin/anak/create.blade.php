@@ -13,13 +13,13 @@ Anak
 @endsection
 @section('content')
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 <form method="post" action="{{route('admin.storeAnak')}}">
     @csrf
@@ -101,8 +101,9 @@ Anak
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Kecamatan <font color="red">*</font></label>
-                <select name="id_kec" class="form-control" require>
-                    @foreach ($kec as $data)
+                <select id="kec" name="id_kec" class="form-control" require>
+                    <option value="">== Select Kecamatan ==</option>
+                    @foreach ($kec as $id => $data)
                     <option value="{{$data->id}}">{{$data->name}}</option>
                     @endforeach
                 </select>
@@ -111,10 +112,8 @@ Anak
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Kelurahan <font color="red">*</font></label>
-                <select name="id_kel" class="form-control" require>
-                    @foreach ($kel as $data)
-                    <option value="{{$data->id}}">{{$data->name}}</option>
-                    @endforeach
+                <select id="kel" name="id_kel" class="form-control" require>
+                    <option value="">== Select Kelurahan ==</option>
                 </select>
             </div>
         </div>
@@ -130,6 +129,18 @@ Anak
                 <input type="number" name="rw" class="form-control" require>
             </div>
         </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Tinggi Badan Lahir <font color="red">*</font></label>
+                <input type="number" name="tb" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Berat Badan Lahir <font color="red">*</font></label>
+                <input type="number" name="bb" class="form-control" require>
+            </div>
+        </div>
         <div class="col-md-12 col-sm-12">
             <div class="form-group">
                 <label>Catatan</label>
@@ -143,4 +154,27 @@ Anak
 </form>
 @endsection
 @section('custom_scripts')
+<script type="text/javascript">
+    $(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#kec').on('change', function() {
+            var id = $(this).val();
+            $.ajax({
+                url: '{{url("admin/get-kel-dasar-anak")}}' + '/' + id,
+                success: function(response) {
+                    $('#kel').empty();
+
+                    $.each(response, function(id, name) {
+                        $('#kel').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+    });
+</script>
 @endsection

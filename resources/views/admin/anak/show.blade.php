@@ -100,19 +100,19 @@ Show Data Anak
             <td>{{$hasil['berat']}}</td>
         </tr>
         <tr>
-            <td>Indeks Massa Tubuh (IMT)</td>
+            <td>Indeks Massa Tubuh (IMT) / Umur</td>
             <td>{{$hasil['imt']}}</td>
         </tr>
         <tr>
-            <td>BB</td>
+            <td>Berat Badan / Umur</td>
             <td>{{$hasil['bb']}}</td>
         </tr>
         <tr>
-            <td>TB</td>
+            <td>Tinggi Badan / Umur</td>
             <td>{{$hasil['tb']}}</td>
         </tr>
         <tr>
-            <td>BT</td>
+            <td>Berat Badan / Tinggi Badan</td>
             <td>{{$hasil['bt']}}</td>
         </tr>
         @endforeach

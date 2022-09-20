@@ -25,4 +25,19 @@ class UserRepository implements UserRepositoryInterface
             'password' => bcrypt('sirindu123'),
         ]);
     }
+    public function updateUser($request,$id)
+    {
+        $user = User::find($id);
+        $user->update([
+            'nik' => $request->nik,
+            'name' => $request->name,
+            'email' => $request->email,
+            'type' => $request->type,
+        ]);
+    }
+    public function destroyUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+    }
 }

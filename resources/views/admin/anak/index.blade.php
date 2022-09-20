@@ -1,6 +1,6 @@
 @extends('admin::layouts.app')
 @section('title')
-Admin - SiRindu
+Admin - Si Rindu
 @endsection
 @section('title-content')
 Data

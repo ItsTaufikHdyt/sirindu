@@ -1,7 +1,7 @@
 <div class="modal fade bs-example-modal-lg" id="updateUserModal{{$data->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form method="POST" action="#">
+            <form method="POST" action="{{route('super.admin.updateUser', $data->id)}}">
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
                 <div class="modal-header">

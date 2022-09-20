@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Services\PayUService\Exception;
+
+use function PHPUnit\Framework\isEmpty;
 
 class AdminController extends Controller
 {
@@ -78,8 +81,14 @@ ANAK
     public function createAnak()
     {
         $kec = Kecamatan::all();
-        $kel = Kelurahan::all();
-        return view('admin.anak.create', compact('kec', 'kel'));
+        //$kel = Kelurahan::all();
+        return view('admin.anak.create', compact('kec'));
+    }
+
+    public function getKelAnak($id)
+    {
+        $kel = Kelurahan::where('id_kecamatan', $id)->pluck('name', 'id');
+        return response()->json($kel);
     }
 
     public function editAnak($id)
@@ -122,8 +131,9 @@ ANAK
             ->select('jk', 'bln', 'posisi', 'tb', 'bb')
             ->where('data_anak.id_anak', $id)
             ->get();
-
+        $no = 0;
         foreach ($dataAnak as $key => $data) {
+            $no++;
             $tinggi = $data->tb;
             $berat = $data->bb;
             $umur = $data->bln;
@@ -137,6 +147,15 @@ ANAK
             $var = $umur <= 24 ? 1 : 2;
             $jk = $data->jk;
             $bmi = round(10000 * $berat / pow($tinggi, 2), 2);
+
+            $err = NULL;
+            if ($bmi < 10.2 || $bmi > 21.1) {
+                $err = "Nilai BMI tidak normal";
+            } elseif ($tinggi < 44.2 || $tinggi > 123.9) {
+                $err = "Nilai Tinggi Badan tidak normal";
+            } elseif ($berat < 1.9 || $berat > 31.2) {
+                $err = "Nilai Berat Badan tidak normal";
+            }
             $imt_u = DB::table('z_score')
                 ->select('id', 'm3sd as a1', 'm2sd as b1', '2sd as c1')
                 ->where([
@@ -168,6 +187,7 @@ ANAK
                     'jk' => $jk,
                     'jenis_tbl' => 4,
                 ])->get();
+
             if ($bmi < $imt_u[0]->a1) {
                 $s1 = "Sangat Kurus";
             } elseif ($bmi >= $imt_u[0]->a1 && $bmi < $imt_u[0]->b1) {
@@ -197,16 +217,31 @@ ANAK
             } else {
                 $s3 = "Tinggi";
             }
-
-            if ($berat < $bt_tb[0]->a4) {
-                $s4 = "Sangat Kurus";
-            } elseif ($berat >= $bt_tb[0]->a4 && $berat < $bt_tb[0]->b4) {
-                $s4 = "Kurus";
-            } elseif ($berat >= $bt_tb[0]->b4 && $berat <= $bt_tb[0]->c4) {
-                $s4 = "Normal";
-            } else {
-                $s4 = "Gemuk";
+            try {
+                if ($berat < $bt_tb[0]->a4) {
+                    $s4 = "Sangat Kurus";
+                } elseif ($berat >= $bt_tb[0]->a4 && $berat < $bt_tb[0]->b4) {
+                    $s4 = "Kurus";
+                } elseif ($berat >= $bt_tb[0]->b4 && $berat <= $bt_tb[0]->c4) {
+                    $s4 = "Normal";
+                } else {
+                    $s4 = "Gemuk";
+                }
+            } catch (\Exception $e) {
+                // dump('culprit : '.$key.', Error : '.$e->getMessage());
+                $s4 = $key;
+                continue;
             }
+            // if ($berat < $bt_tb[0]->a4) {
+            //     $s4 = "Sangat Kurus";
+            // } elseif ($berat >= $bt_tb[0]->a4 && $berat < $bt_tb[0]->b4) {
+            //     $s4 = "Kurus";
+            // } elseif ($berat >= $bt_tb[0]->b4 && $berat <= $bt_tb[0]->c4) {
+            //     $s4 = "Normal";
+            // } else {
+            //     $s4 = "Gemuk";
+            // }
+
             $hasilx[$key] = array(
                 "bln" => $umur,
                 "tinggi" => $tinggi,
@@ -217,8 +252,6 @@ ANAK
                 "bt" => $s4
             );
         }
-
-
         return view('admin.anak.show', compact('anak'))->with('hasilx', $hasilx);
     }
 
@@ -269,8 +302,8 @@ ANAK
     {
         $anak = Anak::find($id);
         $query = DB::table('data_anak')->where('id_anak', $id)->max('bln');
-        $query === NULL ? $bulanSekarang = 0 : $bulanSekarang = $query + 1;
-        // $bulanSekarang = $query;
+        // $query === NULL ? $bulanSekarang = 0 : $bulanSekarang = $query + 1;
+        $bulanSekarang = $query;
         return view('admin.anak.data-anak', compact('anak', 'bulanSekarang'));
     }
 
@@ -280,7 +313,6 @@ ANAK
             $this->anakRepository->storeDataAnak($request);
             return redirect()->route('admin.anak');
             Alert::success('Data Anak', 'Berhasil Menambahkan Data');
-            alert()->success('Title', 'Lorem Lorem Lorem');
         } catch (Throwable $e) {
             return redirect()->route('admin.anak');
             Alert::error('Data Anak', 'Berhasil Menambahkan Data');
@@ -332,12 +364,29 @@ All User Controller
 
     public function storeUser(storeUserRequest $request)
     {
-
         try {
             $user = $this->userRepository->storeUser($request);
-            return redirect()->route('super.admin.home');
+            return redirect()->route('super.admin.user');
         } catch (Throwable $e) {
-            return redirect()->route('super.admin.home');
+            return redirect()->route('super.admin.user');
+        }
+    }
+    public function updateUser(storeUserRequest $request, $id)
+    {
+        try {
+            $user = $this->userRepository->updateUser($request, $id);
+            return redirect()->route('super.admin.user');
+        } catch (Throwable $e) {
+            return redirect()->route('super.admin.user');
+        }
+    }
+    public function destroyUser($id)
+    {
+        try {
+            $user = $this->userRepository->destroyUser($id);
+            return redirect()->route('super.admin.user');
+        } catch (Throwable $e) {
+            return redirect()->route('super.admin.user');
         }
     }
 }

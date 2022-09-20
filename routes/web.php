@@ -40,6 +40,8 @@ Route::middleware(['auth', 'user-access:super-admin'])->prefix('super-admin/')->
     //User Route List
     Route::get('user', [App\Http\Controllers\AdminController::class, 'user'])->name('super.admin.user');
     Route::post('store-user', [App\Http\Controllers\AdminController::class, 'storeUser'])->name('super.admin.storeUser');
+    Route::put('update-user/{id}', [App\Http\Controllers\AdminController::class, 'updateUser'])->name('super.admin.updateUser');
+    Route::delete('delete-user/{id}', [App\Http\Controllers\AdminController::class, 'destroyUser'])->name('super.admin.destroyUser');
 });
 
 /*------------------------------------------
@@ -47,12 +49,14 @@ Route::middleware(['auth', 'user-access:super-admin'])->prefix('super-admin/')->
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
+
 Route::middleware(['auth', 'is_admin'])->prefix('admin/')->group(function () {
     Route::get('home', [App\Http\Controllers\AdminController::class, 'adminHome'])->name('admin.home');
     //Anak Route List
     Route::get('data-dasar-anak', [App\Http\Controllers\AdminController::class, 'anak'])->name('admin.anak');
     Route::get('get-data-dasar-anak', [App\Http\Controllers\AdminController::class, 'getAnak'])->name('admin.getAnak');
     Route::get('create-data-dasar-anak', [App\Http\Controllers\AdminController::class, 'createAnak'])->name('admin.createAnak');
+    Route::get('get-kel-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'getKelAnak'])->name('admin.getKelAnak');
     Route::post('store-data-dasar-anak', [App\Http\Controllers\AdminController::class, 'storeAnak'])->name('admin.storeAnak');
     Route::get('edit-data-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'editAnak'])->name('admin.editAnak');
     Route::get('show-data-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'showAnak'])->name('admin.showAnak');

@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                DeskApp - Bootstrap 4 Admin Template Modified By <a href="https://github.com/taufikhdyt17" target="_blank">Taufik Hidayat</a>
+            Si Rindu © 2022 | Cyber Creative Team | Diskominfo Kota Bontang | Template by DeskApp
             </div>
         </div>
     </div>

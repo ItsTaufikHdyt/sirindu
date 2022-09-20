@@ -20,7 +20,7 @@ class AnakRepository implements AnakRepositoryInterface
 
     public function storeAnak($request)
     {
-        Anak::create([
+        $anak_baru = Anak::create([
             'no_kk' => $request->no_kk,
             'nik' => $request->nik,
             'nama' => $request->nama,
@@ -37,6 +37,14 @@ class AnakRepository implements AnakRepositoryInterface
             'rt' => $request->rt,
             'rw' => $request->rw,
             'catatan' => $request->catatan,
+        ]);
+           
+        DataAnak::create([
+            'id_anak' => $anak_baru->id,
+            'bln' => 0,
+            'posisi' => 'L',
+            'tb' => $request->tb,
+            'bb' => $request->bb,
         ]);
     }
 
