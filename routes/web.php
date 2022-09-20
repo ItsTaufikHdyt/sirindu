@@ -67,6 +67,8 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin/')->group(function () {
     //Data Anak Route List
     Route::get('data-anak/{id}', [App\Http\Controllers\AdminController::class, 'dataAnak'])->name('admin.dataAnak');
     Route::post('store-data-anak', [App\Http\Controllers\AdminController::class, 'storeDataAnak'])->name('admin.storeDataAnak');
+    Route::put('update-data-anak/{id}', [App\Http\Controllers\AdminController::class, 'updateDataAnak'])->name('admin.updateDataAnak');
+    Route::get('edit-data-anak/{id}', [App\Http\Controllers\AdminController::class, 'editDataAnak'])->name('admin.editDataAnak');
     //Ibu Route List
     Route::get('data-ibu', [App\Http\Controllers\AdminController::class, 'ibu'])->name('admin.ibu');
     //Ibu Hamil Route List

@@ -58,10 +58,11 @@ ANAK
                    Edit
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="' . route('admin.editAnak', $data->id) . '">Edit Data</a>
-                    <a class="dropdown-item" href="' . route('admin.chartAnak', $data->id) . '">Chart Data</a>
-                    <a class="dropdown-item" href="' . route('admin.showAnak', $data->id) . '">Show Data</a>
-                    <a class="dropdown-item" href="' . route('admin.dataAnak', $data->id) . '">Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.editAnak', $data->id) . '">Edit Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.chartAnak', $data->id) . '">Grafik Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.showAnak', $data->id) . '">Show Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.dataAnak', $data->id) . '">Tambah Data Berkala Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.editDataAnak', $data->id) . '">Edit Berat/Tinggi Badan Anak</a>
                 </div>
                 </div>
                 ';
@@ -106,7 +107,7 @@ ANAK
             Alert::success('Anak', 'Berhasil Mengubah Data');
             return redirect()->route('admin.anak');
         } catch (Throwable $e) {
-            Alert::error('Anak', 'Gagal Menagubah Data');
+            Alert::error('Anak', 'Gagal Mengubah Data');
             return redirect()->route('admin.anak');
         }
     }
@@ -303,7 +304,7 @@ ANAK
         $anak = Anak::find($id);
         $query = DB::table('data_anak')->where('id_anak', $id)->max('bln');
         // $query === NULL ? $bulanSekarang = 0 : $bulanSekarang = $query + 1;
-        $bulanSekarang = $query;
+        $bulanSekarang = $query + 1;
         return view('admin.anak.data-anak', compact('anak', 'bulanSekarang'));
     }
 
@@ -316,6 +317,25 @@ ANAK
         } catch (Throwable $e) {
             return redirect()->route('admin.anak');
             Alert::error('Data Anak', 'Berhasil Menambahkan Data');
+        }
+    }
+
+    public function editDataAnak($id)
+    {
+        $anak = Anak::find($id);
+        $dataAnak = DataAnak::where('id_anak',$id)->get();
+        return view('admin.anak.edit-data-anak', compact('anak','dataAnak'));
+    }
+
+    public function updateDataAnak(Request $request,$id)
+    {
+        try {
+            $this->anakRepository->updateDataAnak($request, $id);
+            Alert::success('Anak', 'Berhasil Mengubah Data Berkala Anak');
+            return redirect()->route('admin.anak');
+        } catch (Throwable $e) {
+            Alert::error('Anak', 'Gagal Menagubah Data Berkala Anak');
+            return redirect()->route('admin.anak');
         }
     }
 

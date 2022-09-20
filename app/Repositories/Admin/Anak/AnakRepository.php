@@ -38,7 +38,7 @@ class AnakRepository implements AnakRepositoryInterface
             'rw' => $request->rw,
             'catatan' => $request->catatan,
         ]);
-           
+
         DataAnak::create([
             'id_anak' => $anak_baru->id,
             'bln' => 0,
@@ -92,5 +92,13 @@ class AnakRepository implements AnakRepositoryInterface
         ]);
     }
 
-
+    public function updateDataAnak($request,$id)
+    {
+        $dataAnak = DataAnak::find($id);
+        $dataAnak->update([
+            'posisi' => $request->posisi,
+            'tb' => $request->tb,
+            'bb' => $request->bb,
+        ]);
+    }
 }
