@@ -166,7 +166,7 @@ ANAK
                     'jenis_tbl' => 1,
                 ])->get();
             $bb_u = DB::table('z_score')
-                ->select('id', 'm3sd as a2', 'm2sd as b2', '1sd as c2', '2sd as d2', '3sd as e2')
+                ->select('id', 'm3sd as a2', 'm2sd as b2', '1sd as c2')
                 ->where([
                     'acuan' => $umur,
                     'jk' => $jk,
@@ -188,20 +188,44 @@ ANAK
                     'jk' => $jk,
                     'jenis_tbl' => 4,
                 ])->get();
+            $imt_u2 = DB::table('z_score')
+                ->select('id', 'm3sd as a5', 'm2sd as b5', '1sd as c5', '2sd as d5')
+                ->where([
+                    'var' => $var,
+                    'acuan' => $tinggi,
+                    'jk' => $jk,
+                    'jenis_tbl' => 5,
+                ])->get();
 
-            if ($bmi < $imt_u[0]->a1) {
-                $s1 = "Gizi buruk (severely wasted)";
-            } elseif ($bmi >= $imt_u[0]->a1 && $bmi < $imt_u[0]->b1) {
-                $s1 = "Gizi kurang (wasted)";
-            } elseif ($bmi >= $imt_u[0]->b1 && $bmi <= $imt_u[0]->c1) {
-                $s1 = "Gizi baik (normal)";
-            }elseif ($bmi > $imt_u[0]->c1 && $bmi <= $imt_u[0]->d1) {
-                $s1 = "Berisiko gizi lebih (possible risk of overweight";
-            }elseif ($bmi > $imt_u[0]->d1 && $bmi <= $imt_u[0]->e1) {
-                $s1 = "Gizi lebih (overweight)";
-            } else {
-                $s1 = "Obesitas (obese)";
+            if ($umur<=60) {
+                if ($bmi < $imt_u[0]->a1) {
+                    $s1 = "Gizi buruk (severely wasted)";
+                } elseif ($bmi >= $imt_u[0]->a1 && $bmi < $imt_u[0]->b1) {
+                    $s1 = "Gizi kurang (wasted)";
+                } elseif ($bmi >= $imt_u[0]->b1 && $bmi <= $imt_u[0]->c1) {
+                    $s1 = "Gizi baik (normal)";
+                }elseif ($bmi > $imt_u[0]->c1 && $bmi <= $imt_u[0]->d1) {
+                    $s1 = "Berisiko gizi lebih (possible risk of overweight)";
+                }elseif ($bmi > $imt_u[0]->d1 && $bmi <= $imt_u[0]->e1) {
+                    $s1 = "Gizi lebih (overweight)";
+                } else {
+                    $s1 = "Obesitas (obese)";
+                }
             }
+            elseif ($umur>60) {
+                if ($bmi < $imt_u[0]->a1) {
+                    $s1 = "Gizi buruk (severely thinness)";
+                } elseif ($bmi >= $imt_u[0]->a1 && $bmi < $imt_u[0]->b1) {
+                    $s1 = "Gizi kurang (thinness)";
+                } elseif ($bmi >= $imt_u[0]->b1 && $bmi <= $imt_u[0]->c1) {
+                    $s1 = "Gizi baik (normal)";
+                }elseif ($bmi > $imt_u[0]->c1 && $bmi <= $imt_u[0]->d1) {
+                    $s1 = "Gizi lebih (overweight)";
+                } else {
+                    $s1 = "Obesitas (obese)";
+                }
+            }
+
 
             if ($berat < $bb_u[0]->a2) {
                 $s2 = "Berat badan sangat kurang (severely underweight)";
@@ -211,6 +235,16 @@ ANAK
                 $s2 = "Berat badan normal";
             } else {
                 $s2 = "Risiko Berat badan lebih";
+            }
+
+            if ($tinggi < $tb_u[0]->a3) {
+                $s3 = "Sangat pendek (severely stunted)";
+            } elseif ($tinggi >= $tb_u[0]->a3 && $tinggi < $tb_u[0]->b3) {
+                $s3 = "Pendek (stunted)";
+            } elseif ($tinggi >= $tb_u[0]->b3 && $tinggi <= $tb_u[0]->e3) {
+                $s3 = "Normal";
+            } else {
+                $s3 = "Tinggi";
             }
 
             if ($tinggi < $tb_u[0]->a3) {
