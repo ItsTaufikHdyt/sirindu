@@ -230,8 +230,9 @@ ANAK
                 }
             } catch (\Exception $e) {
                 // dump('culprit : '.$key.', Error : '.$e->getMessage());
-                $s4 = $key;
-                continue;
+                // $s4 = $key;
+                $s4 = "Data Tidak Valid";
+                // continue;
             }
             // if ($berat < $bt_tb[0]->a4) {
             //     $s4 = "Sangat Kurus";

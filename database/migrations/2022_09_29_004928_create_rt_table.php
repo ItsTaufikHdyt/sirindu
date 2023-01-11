@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posyandu', function (Blueprint $table) {
+        Schema::create('rt', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_puskesmas')->unsigned();
-            $table->string('name');
+            $table->bigInteger('id_posyandu')->unsigned();
+            $table->bigInteger('id_kelurahan')->unsigned();
+            $table->string('no');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posyandu');
+        Schema::dropIfExists('rt');
     }
 };

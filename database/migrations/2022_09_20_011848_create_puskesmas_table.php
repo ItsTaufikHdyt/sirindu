@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('puskesmas', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kelurahan');
+            $table->bigInteger('id_kecamatan')->unsigned();
             $table->string('name');
             $table->timestamps();
         });

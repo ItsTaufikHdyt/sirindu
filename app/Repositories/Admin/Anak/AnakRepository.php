@@ -20,6 +20,14 @@ class AnakRepository implements AnakRepositoryInterface
 
     public function storeAnak($request)
     {
+        $lahir = strtotime($request->tgl_lahir);
+        $now = strtotime(date('Y-m-d H:i:s'));
+        $y1 = date('Y', $lahir);
+        $y2 = date('Y', $now);
+        $m1 = date('m', $lahir);
+        $m2 = date('m', $now);
+        $umur = (($y2 - $y1) * 12) + ($m2 - $m1);
+
         $anak_baru = Anak::create([
             'no_kk' => $request->no_kk,
             'nik' => $request->nik,
@@ -41,7 +49,7 @@ class AnakRepository implements AnakRepositoryInterface
 
         DataAnak::create([
             'id_anak' => $anak_baru->id,
-            'bln' => 0,
+            'bln' => $umur,
             'posisi' => 'L',
             'tb' => $request->tb,
             'bb' => $request->bb,
@@ -92,7 +100,7 @@ class AnakRepository implements AnakRepositoryInterface
         ]);
     }
 
-    public function updateDataAnak($request,$id)
+    public function updateDataAnak($request, $id)
     {
         $dataAnak = DataAnak::find($id);
         $dataAnak->update([
