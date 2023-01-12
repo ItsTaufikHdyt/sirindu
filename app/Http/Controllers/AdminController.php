@@ -10,6 +10,9 @@ use App\Models\Anak;
 use App\Models\DataAnak;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
+use App\Models\Posyandu;
+use App\Models\Puskesmas;
+use App\Models\Rt;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -86,10 +89,27 @@ ANAK
         return view('admin.anak.create', compact('kec'));
     }
 
+    public function getPuskesmasAnak($id)
+    {
+        $puskesmas = Puskesmas::where('id_kecamatan', $id)->pluck('name', 'id');
+        return response()->json($puskesmas);
+    }
+
     public function getKelAnak($id)
     {
         $kel = Kelurahan::where('id_kecamatan', $id)->pluck('name', 'id');
         return response()->json($kel);
+    }
+
+    public function getRtAnak($id)
+    {
+        $rt = Rt::where('id_posyandu', $id)->pluck('name', 'id');
+        return response()->json($rt);
+    }
+    public function getPosyanduAnak($id)
+    {
+        $posyandu = Posyandu::where('id_puskesmas', $id)->pluck('name','id');
+        return response()->json($posyandu);
     }
 
     public function editAnak($id)
@@ -258,7 +278,7 @@ ANAK
             }
             try {
                 if ($berat < $bt_tb[0]->a4) {
-                    $s4 = "Gizi buruk (severely wasted";
+                    $s4 = "Gizi buruk (severely wasted)";
                 } elseif ($berat >= $bt_tb[0]->a4 && $berat < $bt_tb[0]->b4) {
                     $s4 = "Gizi kurang (wasted)";
                 } elseif ($berat >= $bt_tb[0]->b4 && $berat <= $bt_tb[0]->c4) {

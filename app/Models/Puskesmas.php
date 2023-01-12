@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Puskesmas extends Model
 {
     use HasFactory;
+    protected $table = 'puskesmas';
+    protected $fillable = [];
 }

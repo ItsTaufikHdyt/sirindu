@@ -42,8 +42,8 @@ class AnakRepository implements AnakRepositoryInterface
             'anak' => $request->anak,
             'id_kec' => $request->id_kec,
             'id_kel' => $request->id_kel,
-            'rt' => $request->rt,
-            'rw' => $request->rw,
+            'id_rt' => $request->id_rt,
+            'id_posyandu' => $request->id_posyandu,
             'catatan' => $request->catatan,
         ]);
 

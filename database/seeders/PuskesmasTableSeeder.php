@@ -6,7 +6,7 @@ use App\Models\Puskesmas;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PuskesemasTableSeeder extends Seeder
+class PuskesmasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

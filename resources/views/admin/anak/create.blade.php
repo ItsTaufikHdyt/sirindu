@@ -111,6 +111,14 @@ Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
+                <label>Puskesmas <font color="red">*</font></label>
+                <select id="puskesmas" name="id_puskesmas" class="form-control" require>
+                    <option value="">== Select Puskesmas ==</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
                 <label>Kelurahan <font color="red">*</font></label>
                 <select id="kel" name="id_kel" class="form-control" require>
                     <option value="">== Select Kelurahan ==</option>
@@ -119,14 +127,18 @@ Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>RT <font color="red">*</font></label>
-                <input type="number" name="rt" class="form-control" require>
+                <label>Posyandu <font color="red">*</font></label>
+                <select id="posyandu" name="id_posyandu" class="form-control" require>
+                    <option value="">== Select Posyandu ==</option>
+                </select>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>RW <font color="red">*</font></label>
-                <input type="number" name="rw" class="form-control" require>
+                <label>RT <font color="red">*</font></label>
+                <select id="rt" name="id_rt" class="form-control" require>
+                    <option value="">== Select RT ==</option>
+                </select>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
@@ -171,6 +183,45 @@ Anak
 
                     $.each(response, function(id, name) {
                         $('#kel').append(new Option(name, id))
+                    })
+                }
+            }),
+            $.ajax({
+                url: '{{url("admin/get-puskesmas-dasar-anak")}}' + '/' + id,
+                success: function(response) {
+                    $('#puskesmas').empty();
+
+                    $.each(response, function(id, name) {
+                        $('#puskesmas').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+
+        $('#puskesmas').on('change', function() {
+            var id = $(this).val();
+            $.ajax({
+                url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id,
+                success: function(response) {
+                    $('#posyandu').empty();
+                    console.log(response);
+
+                    $.each(response, function(id, name) {
+                        $('#posyandu').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+
+        $('#posyandu').on('change', function() {
+            var id = $(this).val();
+            $.ajax({
+                url: '{{url("admin/get-rt-dasar-anak")}}' + '/' + id,
+                success: function(response) {
+                    $('#rt').empty();
+
+                    $.each(response, function(id, name) {
+                        $('#rt').append(new Option(name, id))
                     })
                 }
             })

@@ -22,11 +22,11 @@ class KecamatanTableSeeder extends Seeder
             ],
             [
                 'id' => '2',
-                'name' => 'Bontang Selatan',
+                'name' => 'Bontang Utara',
             ],
             [
                 'id' => '3',
-                'name' => 'Bontang Utara',
+                'name' => 'Bontang Selatan',
             ],
         ];
 

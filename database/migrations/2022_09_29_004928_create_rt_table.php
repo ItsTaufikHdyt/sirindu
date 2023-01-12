@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('id_posyandu')->unsigned();
             $table->bigInteger('id_kelurahan')->unsigned();
-            $table->string('no');
+            $table->string('name');
             $table->timestamps();
         });
     }

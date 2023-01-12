@@ -404,52 +404,52 @@ class PosyanduTableSeeder extends Seeder
             [
                 'id' => '78',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 1',
             ],
             [
                 'id' => '79',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 2',
             ],
             [
                 'id' => '80',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 3',
             ],
             [
                 'id' => '81',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 4',
             ],
             [
                 'id' => '82',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 5',
             ],
             [
                 'id' => '83',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 6',
             ],
             [
                 'id' => '84',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 7',
             ],
             [
                 'id' => '85',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 8',
             ],
             [
                 'id' => '86',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 9',
             ],
             [
                 'id' => '87',
                 'id_puskesmas' => 4,
-                'name' => 'Taman Gizi',
+                'name' => 'Pasir Putih 10',
             ],
             [
                 'id' => '88',
