@@ -36,8 +36,9 @@ class storeAnakRequest extends FormRequest
             'anak' => 'required',
             'id_kec' => 'required',
             'id_kel' => 'required',
-            'rt' => 'required',
-            'rw' => 'required',
+            'id_rt' => 'required',
+            'id_puskesmas' => 'required',
+            'id_posyandu' => 'required',
 
         ];
     }

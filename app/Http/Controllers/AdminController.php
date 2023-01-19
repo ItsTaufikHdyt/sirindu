@@ -14,6 +14,7 @@ use App\Models\Posyandu;
 use App\Models\Puskesmas;
 use App\Models\Rt;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;

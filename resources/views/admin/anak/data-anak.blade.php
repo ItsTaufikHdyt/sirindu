@@ -49,6 +49,30 @@ Data Anak
                 <input type="number" step="any" name="bb" class="form-control" require>
             </div>
         </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Asi Ekslusif <font color="red">*</font></label>
+                <select name="asi" class="form-control" require>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
+                </select>
+            </div>
+        </div>
+        @php
+        $month = idate("m");
+        @endphp
+        @if ($month == 2 || $month ==8)
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Vitamin A <font color="red">*</font></label>
+                <select name="vit_a" class="form-control" require>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
+                </select>
+            </div>
+        </div>
+        @endif
+        
         <div class="col-md-12 col-sm-12">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

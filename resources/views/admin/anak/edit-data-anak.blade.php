@@ -22,10 +22,10 @@ Edit Berkala Data Anak Tinggi / Berat
 </div>
 @endif
 <div class="row">
-@foreach ($dataAnak as $data)   
-<form method="post" action="{{route('admin.updateDataAnak',$data->id)}}">
-    @csrf
-    <input type="hidden" name="_method" value="PUT">
+    @foreach ($dataAnak as $data)
+    <form method="post" action="{{route('admin.updateDataAnak',$data->id)}}">
+        @csrf
+        <input type="hidden" name="_method" value="PUT">
         <div class="col">
             <label>Umur {{$data->bln}} Bulan</label>
             <div class="form-group">
@@ -38,6 +38,21 @@ Edit Berkala Data Anak Tinggi / Berat
                     <option value="H" @if($data->posisi == 'H') selected @endif>H</option>
                     <option value="L" @if($data->posisi == 'L') selected @endif>L</option>
                 </select>
+                <label>Asi Ekslusif</label>
+                <select name="asi" class="form-control" require>
+                    <option value="0" @if($data->asi == '0') selected @endif>Tidak</option>
+                    <option value="1" @if($data->asi == '1') selected @endif>Ya</option>
+                </select>
+                @php
+                $month = idate("m");
+                @endphp
+                @if ($month == 2 || $month ==8)
+                <label>Vitamin A</label>
+                <select name="vit_a" class="form-control" require>
+                    <option value="0" @if($data->vit_a == '0') selected @endif>Tidak</option>
+                    <option value="1" @if($data->vit_a == '1') selected @endif>Ya</option>
+                </select>
+                @endif
             </div>
         </div>
         <div class="col-md-12 col-sm-12">

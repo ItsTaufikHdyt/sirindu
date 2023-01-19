@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('posisi');
             $table->float('tb');
             $table->float('bb');
+            $table->string('asi')->nullable();
+            $table->string('vit_a')->nullable();
+            $table->integer('id_user');
             $table->timestamps();
             $table->foreign('id_anak')
                   ->references('id')->on('anak')

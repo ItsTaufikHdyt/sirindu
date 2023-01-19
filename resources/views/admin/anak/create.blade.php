@@ -204,7 +204,6 @@ Anak
                 url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id,
                 success: function(response) {
                     $('#posyandu').empty();
-                    console.log(response);
 
                     $.each(response, function(id, name) {
                         $('#posyandu').append(new Option(name, id))

@@ -13,13 +13,13 @@ Edit Anak
 @endsection
 @section('content')
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 <form method="post" action="{{route('admin.updateAnak',$anak->id)}}">
     @csrf
@@ -102,33 +102,56 @@ Edit Anak
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Kecamatan <font color="red">*</font></label>
-                <select name="id_kec" class="form-control" require>
-                    @foreach ($kec as $data)
-                    <option value="{{$data->id}}" @if ($data->id == $anak->id_kec) selected @endif>{{$data->name}}</option>
+                <select id="kec" name="id_kec" class="form-control" require>
+                    <option value="">== Select Kecamatan ==</option>
+                    @foreach ($kec as $id => $data)
+                    <option value="{{$data->id}}">{{$data->name}}</option>
                     @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Puskesmas <font color="red">*</font></label>
+                <select id="puskesmas" name="id_puskesmas" class="form-control" require>
+                    <option value="">== Select Puskesmas ==</option>
                 </select>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Kelurahan <font color="red">*</font></label>
-                <select name="id_kel" class="form-control" require>
-                    @foreach ($kel as $data)
-                    <option value="{{$data->id}}" @if ($data->id == $anak->id_kel) selected @endif>{{$data->name}}</option>
-                    @endforeach
+                <select id="kel" name="id_kel" class="form-control" require>
+                    <option value="">== Select Kelurahan ==</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Posyandu <font color="red">*</font></label>
+                <select id="posyandu" name="id_posyandu" class="form-control" require>
+                    <option value="">== Select Posyandu ==</option>
                 </select>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>RT <font color="red">*</font></label>
-                <input type="number" name="rt" value="{{$anak->rt}}" class="form-control" require>
+                <select id="rt" name="id_rt" class="form-control" require>
+                    <option value="">== Select RT ==</option>
+                </select>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>RW <font color="red">*</font></label>
-                <input type="number" name="rw" value="{{$anak->rw}}" class="form-control" require>
+                <label>Tinggi Badan Lahir <font color="red">*</font></label>
+                <input type="number" name="tb" value="{{$anak->tb}}" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Berat Badan Lahir <font color="red">*</font></label>
+                <input type="number" name="bb" value="{{$anak->bb}}" class="form-control" require>
             </div>
         </div>
         <div class="col-md-12 col-sm-12">

@@ -28,8 +28,9 @@ return new class extends Migration
             $table->integer('anak');
             $table->bigInteger('id_kec');
             $table->bigInteger('id_kel');
-            $table->integer('rt');
-            $table->integer('rw');
+            $table->integer('id_rt');
+            $table->integer('id_posyandu');
+            $table->integer('id_puskesmas');
             $table->text('catatan');
             $table->timestamps();
         });

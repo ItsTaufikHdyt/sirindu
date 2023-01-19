@@ -4,9 +4,11 @@ namespace App\Repositories\Admin\Anak;
 
 use App\Repositories\Admin\Core\Anak\AnakRepositoryInterface;
 use App\Models\Anak;
+use App\Models\User;
 use App\Models\DataAnak;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AnakRepository implements AnakRepositoryInterface
 {
@@ -44,6 +46,7 @@ class AnakRepository implements AnakRepositoryInterface
             'id_kel' => $request->id_kel,
             'id_rt' => $request->id_rt,
             'id_posyandu' => $request->id_posyandu,
+            'id_puskesmas' => $request->id_puskesmas,
             'catatan' => $request->catatan,
         ]);
 
@@ -53,6 +56,7 @@ class AnakRepository implements AnakRepositoryInterface
             'posisi' => 'L',
             'tb' => $request->tb,
             'bb' => $request->bb,
+            'id_user' => Auth::user()->id,
         ]);
     }
 
@@ -73,8 +77,9 @@ class AnakRepository implements AnakRepositoryInterface
             'anak' => $request->anak,
             'id_kec' => $request->id_kec,
             'id_kel' => $request->id_kel,
-            'rt' => $request->rt,
-            'rw' => $request->rw,
+            'id_rt' => $request->id_rt,
+            'id_posyandu' => $request->id_posyandu,
+            'id_puskesmas' => $request->id_puskesmas,
             'catatan' => $request->catatan,
         ]);
     }
@@ -97,6 +102,9 @@ class AnakRepository implements AnakRepositoryInterface
             'posisi' => $request->posisi,
             'tb' => $request->tb,
             'bb' => $request->bb,
+            'asi' => $request->asi,
+            'vit_a' => $request->vit_a,
+            'id_user' => Auth::user()->id,
         ]);
     }
 
@@ -107,6 +115,9 @@ class AnakRepository implements AnakRepositoryInterface
             'posisi' => $request->posisi,
             'tb' => $request->tb,
             'bb' => $request->bb,
+            'asi' => $request->asi,
+            'vit_a' => $request->vit_a,
+            'id_user' => Auth::user()->id,
         ]);
     }
 }
