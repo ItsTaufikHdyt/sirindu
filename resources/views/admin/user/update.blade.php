@@ -27,9 +27,9 @@
                     <div class="form-group">
                         <label>Type</label>
                         <select class="form-control" name="type">
-                            <option value="0" {{$data->type == 'user' ? 'selected' : ''}}>User</option>
-                            <option value="1" {{$data->type == 'super-admin' ? 'selected' : ''}}>Super Admin</option>
-                            <option value="2" {{$data->type == 'admin' ? 'selected' : ''}}>Admin</option>
+                            <option value="0" {{$data->type == 'super-admin' ? 'selected' : ''}}>Super Admin</option>
+                            <option value="1" {{$data->type == 'admin' ? 'selected' : ''}}>Admin</option>
+                            <option value="2" {{$data->type == 'user' ? 'selected' : ''}}>User</option>
                         </select>
                         @error('type') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>

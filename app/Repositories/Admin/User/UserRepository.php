@@ -18,21 +18,29 @@ class UserRepository implements UserRepositoryInterface
     public function storeUser($request)
     {
         $user = User::create([
-            'nik' => $request->nik,
+            
             'name' => $request->name,
             'email' => $request->email,
             'type' => $request->type,
             'password' => bcrypt('sirindu123'),
+            'id_kec' => $request->id_kec,
+            'id_kel' => $request->id_kel,
+            'id_puskesmas' => $request->id_puskesmas,
+            'id_posyandu' => $request->id_posyandu,
         ]);
     }
     public function updateUser($request,$id)
     {
         $user = User::find($id);
         $user->update([
-            'nik' => $request->nik,
+            
             'name' => $request->name,
             'email' => $request->email,
             'type' => $request->type,
+            'id_kec' => $request->id_kec,
+            'id_kel' => $request->id_kel,
+            'id_puskesmas' => $request->id_puskesmas,
+            'id_posyandu' => $request->id_posyandu,
         ]);
     }
     public function destroyUser($id)

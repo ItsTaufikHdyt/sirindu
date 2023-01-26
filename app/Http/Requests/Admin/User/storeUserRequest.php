@@ -23,7 +23,7 @@ class storeUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'nik' => 'required',
+            // 'nik' => 'required',
             'name' => 'required|string',
             'email' => 'required|email',
             'type' => 'required',
@@ -33,7 +33,7 @@ class storeUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'nik.required' => 'Deskripsi Tidak Boleh Kosong',    
+            // 'nik.required' => 'Deskripsi Tidak Boleh Kosong',    
         ];
     }
 }

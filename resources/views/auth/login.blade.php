@@ -37,7 +37,7 @@ Si Rindu
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="input-group custom">
-                            <input id="nik" type="number" name="nik" class="form-control @error('nik') is-invalid @enderror form-control-lg" value="{{ old('email') }}" placeholder="Email">
+                            <input id="nik" type="text" name="email" class="form-control @error('nik') is-invalid @enderror form-control-lg" value="{{ old('email') }}" placeholder="Email">
                             <div class="input-group-append custom">
                                 <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
                             </div>

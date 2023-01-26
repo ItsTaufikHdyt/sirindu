@@ -443,7 +443,8 @@ All User Controller
     public function user()
     {
         $user = User::all();
-        return view('admin.user.index', compact('user'));
+        $kec = Kecamatan::all();
+        return view('admin.user.index', compact('user','kec'));
     }
 
     public function storeUser(storeUserRequest $request)

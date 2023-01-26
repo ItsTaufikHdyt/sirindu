@@ -16,11 +16,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nik')->unique();
+            // $table->string('nik')->unique();
             $table->string('email')->unique();
             $table->tinyInteger('type')->default(0);
             /* Users: 0 => User, 1=>Super Admin, 2=> Admin */
             $table->string('password');
+            $table->integer('id_kec');
+            $table->integer('id_kel');
+            $table->integer('id_puskesmas');
+            $table->integer('id_posyandu');
             $table->rememberToken();
             $table->timestamps();
         });

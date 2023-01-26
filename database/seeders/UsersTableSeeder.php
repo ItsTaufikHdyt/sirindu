@@ -17,25 +17,35 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'User',
-                'nik' => '1234567890123456',
-                'email' => 'user@myebtuts.com',
+                'name' => 'Super Admin User',
+                'email' => 'super-admin@gmail.com',
                 'type' => 0,
                 'password' => bcrypt('123456'),
+                'id_kec' => 1,
+                'id_kel' => 1,
+                'id_puskesmas' => 2,
+                'id_posyandu' => 2,
+
             ],
             [
-                'name' => 'Super Admin User',
-                'nik' => '1234567890123457',
-                'email' => 'super-admin@myebtuts.com',
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
                 'type' => 1,
                 'password' => bcrypt('123456'),
+                'id_kec' => 1,
+                'id_kel' => 1,
+                'id_puskesmas' => 2,
+                'id_posyandu' => 2,
             ],
             [
-                'name' => 'Manager User',
-                'nik' => '1234567890123458',
-                'email' => 'manager@myebtuts.com',
+                'name' => 'User',
+                'email' => 'user@gmail.com',
                 'type' => 2,
                 'password' => bcrypt('123456'),
+                'id_kec' => 1,
+                'id_kel' => 1,
+                'id_puskesmas' => 2,
+                'id_posyandu' => 2,
             ],
         ];
 
