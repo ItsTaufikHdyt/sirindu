@@ -33,6 +33,37 @@
                         </select>
                         @error('type') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
+                    <div class="form-group">
+                        <label>Kecamatan</label>
+                        <select id="kecx" name="id_kecx" class="form-control" require>
+                            <option value="">== Select Kecamatan ==</option>
+                            @foreach ($kec as $id => $data)
+                            <option value="{{$data->id}}">{{$data->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('type') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Kelurahan</label>
+                        <select id="kelx" name="id_kelx" class="form-control" require>
+                            <option value="">== Select Kelurahan ==</option>
+                        </select>
+                        @error('type') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Puskesmas</label>
+                        <select id="puskesmasx" name="id_puskesmasx" class="form-control" require>
+                            <option value="">== Select Puskesmas ==</option>
+                        </select>
+                        @error('type') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Posyandu</label>
+                        <select id="posyandux" name="id_posyandux" class="form-control" require>
+                            <option value="">== Select Posyandu ==</option>
+                        </select>
+                        @error('type') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
