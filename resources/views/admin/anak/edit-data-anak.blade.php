@@ -29,15 +29,19 @@ Edit Berkala Data Anak Tinggi / Berat
         <div class="col">
             <label>Umur {{$data->bln}} Bulan</label>
             <div class="form-group">
-                <label>Tinggi Badan</label>
-                <input type="number" name="tb" value="{{$data->tb}}" class="form-control" require>
-                <label>Berat Badan</label>
-                <input type="number" name="bb" value="{{$data->bb}}" class="form-control" require>
                 <label>Posisi</label>
                 <select name="posisi" class="form-control" require>
                     <option value="H" @if($data->posisi == 'H') selected @endif>H</option>
                     <option value="L" @if($data->posisi == 'L') selected @endif>L</option>
                 </select>
+                <label>Tinggi Badan</label>
+                <input type="number" name="tb" value="{{$data->tb}}" class="form-control" require>
+                <label>Berat Badan</label>
+                <input type="number" name="bb" value="{{$data->bb}}" class="form-control" require>
+                <label>Lingkar Lengan Atas</label>
+                <input type="number" name="lla" value="{{$data->lla}}" class="form-control" require>
+                <label>Lingkar Kepala</label>
+                <input type="number" name="lk" value="{{$data->lk}}" class="form-control" require>
                 <label>Asi Ekslusif</label>
                 <select name="asi" class="form-control" require>
                     <option value="0" @if($data->asi == '0') selected @endif>Tidak</option>

@@ -144,15 +144,34 @@ Edit Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Tinggi Badan Lahir <font color="red">*</font></label>
-                <input type="number" name="tb" value="{{$anak->tb}}" class="form-control" require>
+                <label>Tinggi Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" name="tb" value="{{$dt->tb}}" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Berat Badan Lahir <font color="red">*</font></label>
-                <input type="number" name="bb" value="{{$anak->bb}}" class="form-control" require>
+                <label>Berat Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" name="bb" value="{{$dt->bb}}" class="form-control" require>
             </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Lingkar Lengan Atas <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" name="lla" value="{{$dt->lla}}" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Lingkar Kepala <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" name="lk" value="{{$dt->lk}}" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+        <label>Asi Ekslusif <font color="red">*</font></label>
+                <select name="asi" class="form-control" require>
+                    <option value="0" @if($anak->asi == '0') selected @endif>Tidak</option>
+                    <option value="1" @if($anak->asi == '1') selected @endif>Ya</option>
+                </select>
         </div>
         <div class="col-md-12 col-sm-12">
             <div class="form-group">

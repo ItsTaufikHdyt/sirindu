@@ -6,6 +6,7 @@ use App\Repositories\Admin\Core\Anak\AnakRepositoryInterface;
 use App\Models\Anak;
 use App\Models\User;
 use App\Models\DataAnak;
+use App\Models\Imunisasi;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,10 @@ class AnakRepository implements AnakRepositoryInterface
             'posisi' => 'L',
             'tb' => $request->tb,
             'bb' => $request->bb,
+            'lla' => $request->lla,
+            'lk' => $request->lk,
+            'ntob' => null,
+            'asi' => $request->asi,
             'id_user' => Auth::user()->id,
         ]);
     }
@@ -102,9 +107,29 @@ class AnakRepository implements AnakRepositoryInterface
             'posisi' => $request->posisi,
             'tb' => $request->tb,
             'bb' => $request->bb,
+            'lla' => $request->lla,
+            'lk' => $request->lk,
+            'ntob' => null,
             'asi' => $request->asi,
             'vit_a' => $request->vit_a,
             'id_user' => Auth::user()->id,
+        ]);
+    }
+
+    public function updateImunisasi($request, $id)
+    {
+        $dataImunisasi = Anak::find($id);
+        $dataImunisasi->update([
+            'hbo' => $request->hbo,
+            'bcg' => $request->bcg,
+            'polio1' => $request->polio1,
+            'dpthb_hib1' => $request->dpthb_hib1,
+            'polio2' => $request->polio2,
+            'dpthb_hib2' => $request->dpthb_hib2,
+            'polio3' => $request->polio3,
+            'dpthb_hib3' => $request->dpthb_hib3,
+            'polio4' => $request->polio4,
+            'campak' => $request->campak
         ]);
     }
 
@@ -115,6 +140,9 @@ class AnakRepository implements AnakRepositoryInterface
             'posisi' => $request->posisi,
             'tb' => $request->tb,
             'bb' => $request->bb,
+            'lla' => $request->lla,
+            'lk' => $request->lk,
+            'ntob' => null,
             'asi' => $request->asi,
             'vit_a' => $request->vit_a,
             'id_user' => Auth::user()->id,

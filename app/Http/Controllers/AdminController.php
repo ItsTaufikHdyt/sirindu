@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\User\storeUserRequest;
 use App\Http\Requests\Admin\Anak\storeAnakRequest;
 use App\Models\Anak;
 use App\Models\DataAnak;
+use App\Models\Imunisasi;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Posyandu;
@@ -66,6 +67,7 @@ ANAK
                     <a class="dropdown-item" href="' . route('admin.chartAnak', $data->id) . '">Grafik Data Anak</a>
                     <a class="dropdown-item" href="' . route('admin.showAnak', $data->id) . '">Show Data Anak</a>
                     <a class="dropdown-item" href="' . route('admin.dataAnak', $data->id) . '">Tambah Data Berkala Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.dataImunisasi', $data->id) . '">Data Imunisasi Anak</a>
                     <a class="dropdown-item" href="' . route('admin.editDataAnak', $data->id) . '">Edit Berat/Tinggi Badan Anak</a>
                 </div>
                 </div>
@@ -118,7 +120,8 @@ ANAK
         $anak = Anak::find($id);
         $kec = Kecamatan::all();
         $kel = Kelurahan::all();
-        return view('admin.anak.edit', compact('anak', 'kec', 'kel'));
+        $dt = DataAnak::where('id_anak',$id)->first();
+        return view('admin.anak.edit', compact('anak', 'kec', 'kel', 'dt'));
     }
 
     public function updateAnak(storeAnakRequest $request, $id)
@@ -398,7 +401,25 @@ ANAK
             Alert::success('Anak', 'Berhasil Mengubah Data Berkala Anak');
             return redirect()->route('admin.anak');
         } catch (Throwable $e) {
-            Alert::error('Anak', 'Gagal Menagubah Data Berkala Anak');
+            Alert::error('Anak', 'Gagal Mengubah Data Berkala Anak');
+            return redirect()->route('admin.anak');
+        }
+    }
+
+    public function dataImunisasi($id)
+    {
+        $data = Anak::find($id);
+        return view('admin.anak.data-imunisasi',compact('data'));
+    }
+
+    public function updateImunisasi(Request $request,$id)
+    {
+        try {
+            $this->anakRepository->updateImunisasi($request, $id);
+            Alert::success('Anak', 'Berhasil Menambahkan Data Imunisasi');
+            return redirect()->route('admin.anak');
+        } catch (Throwable $e) {
+            Alert::error('Anak', 'Berhasil Menambahkan Data Imunisasi');
             return redirect()->route('admin.anak');
         }
     }

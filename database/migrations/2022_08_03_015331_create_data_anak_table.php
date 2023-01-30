@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('posisi');
             $table->float('tb');
             $table->float('bb');
+            $table->float('lla');
+            $table->float('lk');
+            $table->string('ntob')->nullable();
             $table->string('asi')->nullable();
             $table->string('vit_a')->nullable();
             $table->integer('id_user');

@@ -39,14 +39,26 @@ Data Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Tinggi Badan <font color="red">*</font></label>
+                <label>Tinggi Badan <font color="red">* gunakan titik (.) untuk koma</font></label>
                 <input type="number" step="any" name="tb" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Berat Badan <font color="red">*</font></label>
+                <label>Berat Badan <font color="red">* gunakan titik (.) untuk koma</font></label>
                 <input type="number" step="any" name="bb" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Lingkar Lengan Atas <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" step="any" name="lla" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Lingkar Kepala <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" step="any" name="lk" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">

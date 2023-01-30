@@ -143,15 +143,34 @@ Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Tinggi Badan Lahir <font color="red">*</font></label>
+                <label>Tinggi Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
                 <input type="number" name="tb" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Berat Badan Lahir <font color="red">*</font></label>
+                <label>Berat Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
                 <input type="number" name="bb" class="form-control" require>
             </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Lingkar Lengan Atas <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" name="lla" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Lingkar Kepala <font color="red">* gunakan titik (.) untuk koma</font></label>
+                <input type="number" name="lk" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label>Asi Ekslusif <font color="red">*</font></label>
+            <select name="asi" class="form-control" require>
+                <option value="0">Tidak</option>
+                <option value="1">Ya</option>
+            </select>
         </div>
         <div class="col-md-12 col-sm-12">
             <div class="form-group">
@@ -177,25 +196,25 @@ Anak
         $('#kec').on('change', function() {
             var id = $(this).val();
             $.ajax({
-                url: '{{url("admin/get-kel-dasar-anak")}}' + '/' + id,
-                success: function(response) {
-                    $('#kel').empty();
+                    url: '{{url("admin/get-kel-dasar-anak")}}' + '/' + id,
+                    success: function(response) {
+                        $('#kel').empty();
 
-                    $.each(response, function(id, name) {
-                        $('#kel').append(new Option(name, id))
-                    })
-                }
-            }),
-            $.ajax({
-                url: '{{url("admin/get-puskesmas-dasar-anak")}}' + '/' + id,
-                success: function(response) {
-                    $('#puskesmas').empty();
+                        $.each(response, function(id, name) {
+                            $('#kel').append(new Option(name, id))
+                        })
+                    }
+                }),
+                $.ajax({
+                    url: '{{url("admin/get-puskesmas-dasar-anak")}}' + '/' + id,
+                    success: function(response) {
+                        $('#puskesmas').empty();
 
-                    $.each(response, function(id, name) {
-                        $('#puskesmas').append(new Option(name, id))
-                    })
-                }
-            })
+                        $.each(response, function(id, name) {
+                            $('#puskesmas').append(new Option(name, id))
+                        })
+                    }
+                })
         });
 
         $('#puskesmas').on('change', function() {
