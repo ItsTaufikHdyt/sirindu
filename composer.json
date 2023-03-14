@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "maatwebsite/excel": "^3.1",
+        "rap2hpoutre/fast-excel": "^5.2",
         "realrashid/sweet-alert": "^5.1",
         "yajra/laravel-datatables": "9.0",
         "yajra/laravel-datatables-oracle": "^10.0"
@@ -32,7 +33,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
