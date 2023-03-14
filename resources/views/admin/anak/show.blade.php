@@ -71,14 +71,14 @@ Show Data Anak
             <td>Kelurahan</td>
             <td>{{$anak->kel[0]->name}}</td>
         </tr>
-        <tr>
+        <!-- <tr>
             <td>RT</td>
             <td>{{$anak->rt}}</td>
-        </tr>
-        <tr>
+        </tr> -->
+        <!-- <tr>
             <td>RW</td>
             <td>{{$anak->rw}}</td>
-        </tr>
+        </tr> -->
         <tr>
             <td>Catatan</td>
             <td>{{$anak->catatan}}</td>

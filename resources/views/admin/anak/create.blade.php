@@ -199,7 +199,7 @@ Anak
                     url: '{{url("admin/get-kel-dasar-anak")}}' + '/' + id,
                     success: function(response) {
                         $('#kel').empty();
-
+                        $('#kel').append(new Option('====== Kelurahan ======',0));
                         $.each(response, function(id, name) {
                             $('#kel').append(new Option(name, id))
                         })
@@ -209,7 +209,7 @@ Anak
                     url: '{{url("admin/get-puskesmas-dasar-anak")}}' + '/' + id,
                     success: function(response) {
                         $('#puskesmas').empty();
-
+                        $('#puskesmas').append(new Option('====== Puskesmas ======',0));
                         $.each(response, function(id, name) {
                             $('#puskesmas').append(new Option(name, id))
                         })
@@ -223,7 +223,7 @@ Anak
                 url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id,
                 success: function(response) {
                     $('#posyandu').empty();
-
+                    $('#posyandu').append(new Option('====== Posyandu ======',0));
                     $.each(response, function(id, name) {
                         $('#posyandu').append(new Option(name, id))
                     })
@@ -237,6 +237,7 @@ Anak
                 url: '{{url("admin/get-rt-dasar-anak")}}' + '/' + id,
                 success: function(response) {
                     $('#rt').empty();
+                    $('#rt').append(new Option('====== RT ======',0));
 
                     $.each(response, function(id, name) {
                         $('#rt').append(new Option(name, id))

@@ -76,6 +76,10 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin/')->group(function () {
     //Data Imunisasi Anak Route List
     Route::get('data-imunisasi-anak/{id}', [App\Http\Controllers\AdminController::class, 'dataImunisasi'])->name('admin.dataImunisasi');
     Route::put('update-data-imunisasi-anak/{id}', [App\Http\Controllers\AdminController::class, 'updateImunisasi'])->name('admin.updateImunisasi');
+    //Data Export Anak
+    Route::get('export', [App\Http\Controllers\AdminController::class, 'exportView'])->name('admin.exportView');
+    Route::get('exportAllExcel', [App\Http\Controllers\AdminController::class, 'exportAllExcel'])->name('admin.exportAllExcel');
+    Route::post('exportFormExcel', [App\Http\Controllers\AdminController::class, 'exportExcel'])->name('admin.exportFormExcel');
     //Ibu Route List
     Route::get('data-ibu', [App\Http\Controllers\AdminController::class, 'ibu'])->name('admin.ibu');
     //Ibu Hamil Route List

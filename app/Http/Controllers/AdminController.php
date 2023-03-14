@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AllExport;
 use App\Repositories\Admin\User\UserRepository as UserInterface;
 use App\Repositories\Admin\Anak\AnakRepository as AnakInterface;
 use App\Http\Requests\Admin\User\storeUserRequest;
@@ -16,6 +17,9 @@ use App\Models\Puskesmas;
 use App\Models\Rt;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\AnakExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -422,6 +426,21 @@ ANAK
             Alert::error('Anak', 'Berhasil Menambahkan Data Imunisasi');
             return redirect()->route('admin.anak');
         }
+    }
+
+    public function exportView()
+    {
+        $kec = Kecamatan::all();
+        return view('admin.anak.export',compact('kec'));
+    }
+
+    public function exportExcel(Request $request)
+    {
+        return Excel::download(new AnakExport($request), 'data-anak.xlsx');
+    }
+    public function exportAllExcel()
+    {
+        return Excel::download(new AllExport, 'all-data-anak.xlsx');
     }
 
     /*------------------------------------------

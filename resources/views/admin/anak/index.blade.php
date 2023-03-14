@@ -13,6 +13,7 @@ Anak
 @endsection
 @section('content')
 <a href="{{route('admin.createAnak')}}" class="btn btn-primary">Create Data</a>
+<a href="{{route('admin.exportView')}}"  class="btn btn-warning">Export Data</a>
 <br><br>
 <div class="table-responsive">
     <table id="tabel-anak" class="table table-striped">
