@@ -74,7 +74,6 @@ ANAK
                     <a class="dropdown-item" href="' . route('admin.showAnak', $data->id) . '">Show Data Anak</a>
                     <a class="dropdown-item" href="' . route('admin.dataAnak', $data->id) . '">Tambah Data Berkala Anak</a>
                     <a class="dropdown-item" href="' . route('admin.dataImunisasi', $data->id) . '">Data Imunisasi Anak</a>
-                    <a class="dropdown-item" href="' . route('admin.editDataAnak', $data->id) . '">Edit Berat/Tinggi Badan Anak</a>
                 </div>
                 </div>
                 ';
@@ -127,7 +126,8 @@ ANAK
         $kec = Kecamatan::all();
         $kel = Kelurahan::all();
         $dt = DataAnak::where('id_anak', $id)->first();
-        return view('admin.anak.edit', compact('anak', 'kec', 'kel', 'dt'));
+        $dataAnak = DataAnak::where('id_anak', $id)->get();
+        return view('admin.anak.edit', compact('anak', 'kec', 'kel', 'dt','dataAnak'));
     }
 
     public function updateAnak(storeAnakRequest $request, $id)
@@ -390,13 +390,6 @@ ANAK
             return redirect()->route('admin.anak');
             Alert::error('Data Anak', 'Berhasil Menambahkan Data');
         }
-    }
-
-    public function editDataAnak($id)
-    {
-        $anak = Anak::find($id);
-        $dataAnak = DataAnak::where('id_anak', $id)->get();
-        return view('admin.anak.edit-data-anak', compact('anak', 'dataAnak'));
     }
 
     public function updateDataAnak(Request $request, $id)

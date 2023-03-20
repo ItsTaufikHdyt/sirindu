@@ -72,7 +72,6 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin/')->group(function () {
     Route::get('data-anak/{id}', [App\Http\Controllers\AdminController::class, 'dataAnak'])->name('admin.dataAnak');
     Route::post('store-data-anak', [App\Http\Controllers\AdminController::class, 'storeDataAnak'])->name('admin.storeDataAnak');
     Route::put('update-data-anak/{id}', [App\Http\Controllers\AdminController::class, 'updateDataAnak'])->name('admin.updateDataAnak');
-    Route::get('edit-data-anak/{id}', [App\Http\Controllers\AdminController::class, 'editDataAnak'])->name('admin.editDataAnak');
     //Data Imunisasi Anak Route List
     Route::get('data-imunisasi-anak/{id}', [App\Http\Controllers\AdminController::class, 'dataImunisasi'])->name('admin.dataImunisasi');
     Route::put('update-data-imunisasi-anak/{id}', [App\Http\Controllers\AdminController::class, 'updateImunisasi'])->name('admin.updateImunisasi');
