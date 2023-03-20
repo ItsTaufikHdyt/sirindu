@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('golda');
             $table->integer('anak');
             $table->string('no');
+            $table->string('status');
             $table->bigInteger('id_kec');
             $table->bigInteger('id_kel');
             $table->integer('id_rt');

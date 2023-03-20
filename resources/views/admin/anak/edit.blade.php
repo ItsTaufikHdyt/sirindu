@@ -173,11 +173,18 @@ Edit Anak
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
-        <label>Asi Ekslusif <font color="red">*</font></label>
-                <select name="asi" class="form-control" require>
-                    <option value="0" @if($anak->asi == '0') selected @endif>Tidak</option>
-                    <option value="1" @if($anak->asi == '1') selected @endif>Ya</option>
-                </select>
+            <label>Asi Ekslusif <font color="red">*</font></label>
+            <select name="asi" class="form-control" require>
+                <option value="0" @if($anak->asi == '0') selected @endif>Tidak</option>
+                <option value="1" @if($anak->asi == '1') selected @endif>Ya</option>
+            </select>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label>Status <font color="red">*</font></label>
+            <select name="status" class="form-control" require>
+                <option value="0" @if($anak->status == '0') selected @endif>Tidak Aktif</option>
+                <option value="1" @if($anak->status == '1') selected @endif>Aktif</option>
+            </select>
         </div>
         <div class="col-md-12 col-sm-12">
             <div class="form-group">
