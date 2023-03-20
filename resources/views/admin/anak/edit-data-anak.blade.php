@@ -29,6 +29,8 @@ Edit Berkala Data Anak Tinggi / Berat
         <div class="col">
             <label>Umur {{$data->bln}} Bulan</label>
             <div class="form-group">
+                <label>Tanggal Kunjungan</label>
+                <input type="date" name="tgl_kunjungan" value="{{$data->tgl_kunjungan}}" class="form-control" require>
                 <label>Posisi</label>
                 <select name="posisi" class="form-control" require>
                     <option value="H" @if($data->posisi == 'H') selected @endif>H</option>
@@ -47,16 +49,18 @@ Edit Berkala Data Anak Tinggi / Berat
                     <option value="0" @if($data->asi == '0') selected @endif>Tidak</option>
                     <option value="1" @if($data->asi == '1') selected @endif>Ya</option>
                 </select>
-                @php
-                $month = idate("m");
-                @endphp
-                @if ($month == 2 || $month ==8)
                 <label>Vitamin A</label>
                 <select name="vit_a" class="form-control" require>
                     <option value="0" @if($data->vit_a == '0') selected @endif>Tidak</option>
                     <option value="1" @if($data->vit_a == '1') selected @endif>Ya</option>
                 </select>
-                @endif
+                <label>Obat Cacing</label>
+                <select name="obat_cacing" class="form-control" require>
+                    <option value="0" @if($data->obat_cacing == '0') selected @endif>Tidak</option>
+                    <option value="1" @if($data->obat_cacing == '1') selected @endif>Ya</option>
+                </select>
+                <label>DDTKA</label>
+                <input type="text" class="form-control" name="ddtka" value="{{$data->ddtka}}">
             </div>
         </div>
         <div class="col-md-12 col-sm-12">

@@ -101,6 +101,12 @@ Edit Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
+                <label>No HP</label>
+                <input type="number" name="no" value="{{$anak->no}}" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
                 <label>Kecamatan <font color="red">*</font></label>
                 <select id="kec" name="id_kec" class="form-control" require>
                     <option value="">== Select Kecamatan ==</option>

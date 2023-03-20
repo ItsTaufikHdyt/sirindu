@@ -26,6 +26,7 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->string('golda');
             $table->integer('anak');
+            $table->string('no');
             $table->bigInteger('id_kec');
             $table->bigInteger('id_kel');
             $table->integer('id_rt');

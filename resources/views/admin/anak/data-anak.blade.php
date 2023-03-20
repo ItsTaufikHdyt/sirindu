@@ -18,6 +18,12 @@ Data Anak
         <input type="hidden" name="id_anak" value="{{$anak->id}}" class="form-control" require>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
+                <label>Tanggal Kunjungan <font color="red">*</font> </label>
+                <input type="date" name="tgl_kunjungan" class="form-control" require>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
                 <label>Nama <font color="red">*</font></label>
                 <input type="text" name="nama" value="{{$anak->nama}}" class="form-control" require readonly>
             </div>
@@ -70,10 +76,6 @@ Data Anak
                 </select>
             </div>
         </div>
-        @php
-        $month = idate("m");
-        @endphp
-        @if ($month == 2 || $month ==8)
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Vitamin A <font color="red">*</font></label>
@@ -83,8 +85,21 @@ Data Anak
                 </select>
             </div>
         </div>
-        @endif
-        
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Obat Cacing <font color="red">*</font></label>
+                <select name="obat_cacing" class="form-control" require>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>DDTKA</label>
+                <input type="text" step="any" name="ddtka" class="form-control" require>
+            </div>
+        </div>
         <div class="col-md-12 col-sm-12">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

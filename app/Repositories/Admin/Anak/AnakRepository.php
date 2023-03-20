@@ -43,6 +43,7 @@ class AnakRepository implements AnakRepositoryInterface
             'tgl_lahir' => $request->tgl_lahir,
             'golda' => $request->golda,
             'anak' => $request->anak,
+            'no' => $request->no,
             'id_kec' => $request->id_kec,
             'id_kel' => $request->id_kel,
             'id_rt' => $request->id_rt,
@@ -61,6 +62,9 @@ class AnakRepository implements AnakRepositoryInterface
             'lk' => $request->lk,
             'ntob' => null,
             'asi' => $request->asi,
+            'tgl_kunjungan' => $request->tgl_kunjungan,
+            'obat_cacing' => $request->obat_cacing,
+            'ddtka' => $request->ddtka,
             'id_user' => Auth::user()->id,
         ]);
     }
@@ -80,6 +84,7 @@ class AnakRepository implements AnakRepositoryInterface
             'tgl_lahir' => $request->tgl_lahir,
             'golda' => $request->golda,
             'anak' => $request->anak,
+            'no' => $request->no,
             'id_kec' => $request->id_kec,
             'id_kel' => $request->id_kel,
             'id_rt' => $request->id_rt,
@@ -103,6 +108,7 @@ class AnakRepository implements AnakRepositoryInterface
     {
         $anak = DataAnak::create([
             'id_anak' => $request->id_anak,
+            'tgl_kunjungan' => $request->tgl_kunjungan,
             'bln' => $request->bln,
             'posisi' => $request->posisi,
             'tb' => $request->tb,
@@ -112,6 +118,8 @@ class AnakRepository implements AnakRepositoryInterface
             'ntob' => null,
             'asi' => $request->asi,
             'vit_a' => $request->vit_a,
+            'obat_cacing' => $request->obat_cacing,
+            'ddtka' => $request->ddtka,
             'id_user' => Auth::user()->id,
         ]);
     }
@@ -145,6 +153,9 @@ class AnakRepository implements AnakRepositoryInterface
             'ntob' => null,
             'asi' => $request->asi,
             'vit_a' => $request->vit_a,
+            'tgl_kunjungan' => $request->tgl_kunjungan,
+            'obat_cacing' => $request->obat_cacing,
+            'ddtka' => $request->ddtka,
             'id_user' => Auth::user()->id,
         ]);
     }

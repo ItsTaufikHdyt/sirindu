@@ -100,6 +100,12 @@ Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
+                <label>No HP</label>
+                <input type="number" name="no" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
                 <label>Kecamatan <font color="red">*</font></label>
                 <select id="kec" name="id_kec" class="form-control" require>
                     <option value="">== Select Kecamatan ==</option>
@@ -171,6 +177,19 @@ Anak
                 <option value="0">Tidak</option>
                 <option value="1">Ya</option>
             </select>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label>Obat Cacing <font color="red">*</font></label>
+            <select name="obat_cacing" class="form-control" require>
+                <option value="0">Tidak</option>
+                <option value="1">Ya</option>
+            </select>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Tanggal Kunjungan <font color="red">*</font></label>
+                <input type="date" name="tgl_kunjungan" class="form-control" require>
+            </div>
         </div>
         <div class="col-md-12 col-sm-12">
             <div class="form-group">

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('data_anak', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_anak')->unsigned();
+            $table->date('tgl_kunjungan');
             $table->integer('bln');
             $table->string('posisi');
             $table->float('tb');
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->string('ntob')->nullable();
             $table->string('asi')->nullable();
             $table->string('vit_a')->nullable();
+            $table->string('obat_cacing')->nullable();
+            $table->string('ddtka')->nullable();
             $table->integer('id_user');
             $table->timestamps();
             $table->foreign('id_anak')
