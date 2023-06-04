@@ -3,7 +3,7 @@ namespace App\Http\Requests\Admin\Anak;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class storeAnakRequest extends FormRequest
+class updateAnakRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,11 +34,6 @@ class storeAnakRequest extends FormRequest
             'tgl_lahir' => 'required',
             'golda' => 'required',
             'anak' => 'required',
-            'id_kec' => 'required',
-            'id_kel' => 'required',
-            'id_rt' => 'required',
-            'id_puskesmas' => 'required',
-            'id_posyandu' => 'required',
 
         ];
     }
@@ -57,9 +52,6 @@ class storeAnakRequest extends FormRequest
             'tgl_lahir.required' => 'Tanggal Lahir Tidak Boleh Kosong',
             'golda.required' => 'Golongan Darah Tidak Boleh Kosong',
             'anak.required' => 'Anak Ke Tidak Boleh Kosong',
-            'id_kec.required' => 'Kecamatan Tidak Boleh Kosong',
-            'id_kel.required' => 'Kelurahan Tidak Boleh Kosong',
-            'rt.required' => 'RT Tidak Boleh Kosong',  
         ];
     }
 }

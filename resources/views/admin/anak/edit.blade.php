@@ -106,9 +106,10 @@ Edit Anak
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
+            <input type="checkbox" id="gantiLokasi" name="centang" class="i-checks" onclick="lokasi()"> Ganti Lokasi Alamat <br>
             <div class="form-group">
                 <label>Kecamatan <font color="red">*</font></label>
-                <select id="kec" name="id_kec" class="form-control" require>
+                <select id="kec" name="id_kec" class="form-control" disabled="true" require>
                     <option value="">== Select Kecamatan ==</option>
                     @foreach ($kec as $id => $data)
                     <option value="{{$data->id}}">{{$data->name}}</option>
@@ -117,17 +118,19 @@ Edit Anak
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
+            <br>
             <div class="form-group">
                 <label>Puskesmas <font color="red">*</font></label>
-                <select id="puskesmas" name="id_puskesmas" class="form-control" require>
+                <select id="puskesmas" name="id_puskesmas" class="form-control" disabled="true" require>
                     <option value="">== Select Puskesmas ==</option>
                 </select>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
+            <br>
             <div class="form-group">
                 <label>Kelurahan <font color="red">*</font></label>
-                <select id="kel" name="id_kel" class="form-control" require>
+                <select id="kel" name="id_kel" class="form-control" disabled="true" require>
                     <option value="">== Select Kelurahan ==</option>
                 </select>
             </div>
@@ -135,7 +138,7 @@ Edit Anak
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Posyandu <font color="red">*</font></label>
-                <select id="posyandu" name="id_posyandu" class="form-control" require>
+                <select id="posyandu" name="id_posyandu" class="form-control" disabled="true" require>
                     <option value="">== Select Posyandu ==</option>
                 </select>
             </div>
@@ -143,7 +146,7 @@ Edit Anak
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>RT <font color="red">*</font></label>
-                <select id="rt" name="id_rt" class="form-control" require>
+                <select id="rt" name="id_rt" class="form-control" disabled="true" require>
                     <option value="">== Select RT ==</option>
                 </select>
             </div>
@@ -151,25 +154,25 @@ Edit Anak
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Tinggi Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="tb" value="{{$dt->tb}}" class="form-control" require>
+                <input type="text" name="tb" value="{{$dt->tb}}" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Berat Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="bb" value="{{$dt->bb}}" class="form-control" require>
+                <input type="text" name="bb" value="{{$dt->bb}}" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Lingkar Lengan Atas <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="lla" value="{{$dt->lla}}" class="form-control" require>
+                <input type="text" name="lla" value="{{$dt->lla}}" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Lingkar Kepala <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="lk" value="{{$dt->lk}}" class="form-control" require>
+                <input type="text" name="lk" value="{{$dt->lk}}" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
@@ -185,6 +188,12 @@ Edit Anak
                 <option value="0" @if($anak->status == '0') selected @endif>Tidak Aktif</option>
                 <option value="1" @if($anak->status == '1') selected @endif>Aktif</option>
             </select>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
+                <label>Tanggal Kunjungan <font color="red">*</font></label>
+                <input type="date" name="tgl_kunjungan" value="{{$dt->tgl_kunjungan}}" class="form-control" require>
+            </div>
         </div>
         <div class="col-md-12 col-sm-12">
             <div class="form-group">
@@ -258,4 +267,100 @@ Edit Anak
 </div>
 @endsection
 @section('custom_scripts')
+<script type="text/javascript">
+    // const cb = document.getElementById('gantiLokasi');
+    // console.log(cb.checked);
+
+    function lokasi() {
+        var cb = document.getElementById('gantiLokasi');
+        var kec = document.getElementById('kec');
+        var kel = document.getElementById('kel');
+        var posyandu = document.getElementById('posyandu');
+        var puskesmas = document.getElementById('puskesmas');
+        var rt = document.getElementById('rt');
+        if (cb.checked) {
+            kec.disabled = false;
+            kec.focus();
+            posyandu.disabled = false;
+            posyandu.focus();
+            puskesmas.disabled = false;
+            puskesmas.focus();
+            kel.disabled = false;
+            kel.focus();
+            rt.disabled = false;
+            rt.focus();
+        } else {
+            kec.disabled = true;
+            puskesmas.disabled = true;
+
+            posyandu.disabled = true;
+
+            kel.disabled = true;
+
+            rt.disabled = true;
+
+        }
+    }
+
+    $(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#kec').on('change', function() {
+            var id = $(this).val();
+            $.ajax({
+                    url: '{{url("admin/get-kel-dasar-anak")}}' + '/' + id,
+                    success: function(response) {
+                        $('#kel').empty();
+                        $('#kel').append(new Option('====== Kelurahan ======',0));
+                        $.each(response, function(id, name) {
+                            $('#kel').append(new Option(name, id))
+                        })
+                    }
+                }),
+                $.ajax({
+                    url: '{{url("admin/get-puskesmas-dasar-anak")}}' + '/' + id,
+                    success: function(response) {
+                        $('#puskesmas').empty();
+                        $('#puskesmas').append(new Option('====== Puskesmas ======',0));
+                        $.each(response, function(id, name) {
+                            $('#puskesmas').append(new Option(name, id))
+                        })
+                    }
+                })
+        });
+
+        $('#puskesmas').on('change', function() {
+            var id = $(this).val();
+            $.ajax({
+                url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id,
+                success: function(response) {
+                    $('#posyandu').empty();
+                    $('#posyandu').append(new Option('====== Posyandu ======',0));
+                    $.each(response, function(id, name) {
+                        $('#posyandu').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+
+        $('#posyandu').on('change', function() {
+            var id = $(this).val();
+            $.ajax({
+                url: '{{url("admin/get-rt-dasar-anak")}}' + '/' + id,
+                success: function(response) {
+                    $('#rt').empty();
+                    $('#rt').append(new Option('====== RT ======',0));
+
+                    $.each(response, function(id, name) {
+                        $('#rt').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+    });
+</script>
 @endsection

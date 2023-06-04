@@ -11,6 +11,8 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isEmpty;
+
 class AnakRepository implements AnakRepositoryInterface
 {
     protected $anak;
@@ -72,28 +74,88 @@ class AnakRepository implements AnakRepositoryInterface
 
     public function updateAnak($request, $id)
     {
+        $lahir = strtotime($request->tgl_lahir);
+        $now = strtotime(date('Y-m-d H:i:s'));
+        $y1 = date('Y', $lahir);
+        $y2 = date('Y', $now);
+        $m1 = date('m', $lahir);
+        $m2 = date('m', $now);
+        $umur = (($y2 - $y1) * 12) + ($m2 - $m1);
         $anak = Anak::find($id);
-        $anak->update([
-            'no_kk' => $request->no_kk,
-            'nik' => $request->nik,
-            'nama' => $request->nama,
-            'nik_ortu' => $request->nik_ortu,
-            'nama_ibu' => $request->nama_ibu,
-            'nama_ayah' => $request->nama_ayah,
-            'jk' => $request->jk,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tgl_lahir' => $request->tgl_lahir,
-            'golda' => $request->golda,
-            'anak' => $request->anak,
-            'no' => $request->no,
-            'status' => $request->status,
-            'id_kec' => $request->id_kec,
-            'id_kel' => $request->id_kel,
-            'id_rt' => $request->id_rt,
-            'id_posyandu' => $request->id_posyandu,
-            'id_puskesmas' => $request->id_puskesmas,
-            'catatan' => $request->catatan,
-        ]);
+        $dt = DataAnak::where('id_anak', $id)->first();
+        if ($request->id_kec == null) {
+            $anak->update([
+                'no_kk' => $request->no_kk,
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'nik_ortu' => $request->nik_ortu,
+                'nama_ibu' => $request->nama_ibu,
+                'nama_ayah' => $request->nama_ayah,
+                'jk' => $request->jk,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'golda' => $request->golda,
+                'anak' => $request->anak,
+                'no' => $request->no,
+                'status' => $request->status,
+                'id_kec' => $anak->id_kec,
+                'id_kel' => $anak->id_kel,
+                'id_rt' => $anak->id_rt,
+                'id_posyandu' => $anak->id_posyandu,
+                'id_puskesmas' => $anak->id_puskesmas,
+                'catatan' => $request->catatan,
+            ]);
+            $dt->update([
+                'bln' => $umur,
+                'posisi' => 'L',
+                'tb' => $request->tb,
+                'bb' => $request->bb,
+                'lla' => $request->lla,
+                'lk' => $request->lk,
+                'ntob' => null,
+                'asi' => $request->asi,
+                'tgl_kunjungan' => $request->tgl_kunjungan,
+                'obat_cacing' => $request->obat_cacing,
+                'ddtka' => $request->ddtka,
+                'id_user' => Auth::user()->id,
+            ]);
+        } else {
+            $anak->update([
+                'no_kk' => $request->no_kk,
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'nik_ortu' => $request->nik_ortu,
+                'nama_ibu' => $request->nama_ibu,
+                'nama_ayah' => $request->nama_ayah,
+                'jk' => $request->jk,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
+                'golda' => $request->golda,
+                'anak' => $request->anak,
+                'no' => $request->no,
+                'status' => $request->status,
+                'id_kec' => $request->id_kec,
+                'id_kel' => $request->id_kel,
+                'id_rt' => $request->id_rt,
+                'id_posyandu' => $request->id_posyandu,
+                'id_puskesmas' => $request->id_puskesmas,
+                'catatan' => $request->catatan,
+            ]);
+            $dt->update([
+                'bln' => $umur,
+                'posisi' => 'L',
+                'tb' => $request->tb,
+                'bb' => $request->bb,
+                'lla' => $request->lla,
+                'lk' => $request->lk,
+                'ntob' => null,
+                'asi' => $request->asi,
+                'tgl_kunjungan' => $request->tgl_kunjungan,
+                'obat_cacing' => $request->obat_cacing,
+                'ddtka' => $request->ddtka,
+                'id_user' => Auth::user()->id,
+            ]);
+        }
     }
 
     public function destroyAnak($id)

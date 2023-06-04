@@ -150,25 +150,25 @@ Anak
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Tinggi Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="tb" class="form-control" require>
+                <input type="text" name="tb" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Berat Badan Lahir <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="bb" class="form-control" require>
+                <input type="text" name="bb" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Lingkar Lengan Atas <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="lla" class="form-control" require>
+                <input type="text" name="lla" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Lingkar Kepala <font color="red">* gunakan titik (.) untuk koma</font></label>
-                <input type="number" name="lk" class="form-control" require>
+                <input type="text" name="lk" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">

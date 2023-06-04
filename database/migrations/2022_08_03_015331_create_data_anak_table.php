@@ -24,9 +24,9 @@ return new class extends Migration
             $table->float('lla');
             $table->float('lk');
             $table->string('ntob')->nullable();
-            $table->string('asi')->nullable();
-            $table->string('vit_a')->nullable();
-            $table->string('obat_cacing')->nullable();
+            $table->integer('asi')->nullable();
+            $table->integer('vit_a')->nullable();
+            $table->integer('obat_cacing')->nullable();
             $table->string('ddtka')->nullable();
             $table->integer('id_user');
             $table->timestamps();

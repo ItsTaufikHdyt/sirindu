@@ -12,21 +12,21 @@ Data
 Export Data Anak
 @endsection
 @section('content')
-<form method="post" action="{{route('admin.exportFormExcel')}}">
+<form method="post" action="{{route('admin.formViewExport')}}">
     @csrf
     <div class="row">
-        <!-- <div class="col-md-4 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>NIK <font color="red">*</font></label>
-                <input type="number" name="nik" class="form-control" require>
+                <label>From Date <font color="red">*</font></label>
+                <input type="date" name="from_date" class="form-control" require>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Nama <font color="red">*</font></label>
-                <input type="text" name="nama" class="form-control" require>
+                <label>To Date <font color="red">*</font></label>
+                <input type="date" name="to_date" class="form-control" require>
             </div>
-        </div> -->
+        </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
                 <label>Kecamatan <font color="red">*</font></label>
