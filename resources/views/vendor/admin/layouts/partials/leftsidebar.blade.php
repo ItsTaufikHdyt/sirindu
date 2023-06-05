@@ -1,8 +1,9 @@
 <div class="left-side-bar">
 	<div class="brand-logo">
 		<a href="#">
-			<img src="{{asset('admin/vendors/images/deskapp-logo.svg')}}" alt="" class="dark-logo">
-			<img src="{{asset('admin/vendors/images/deskapp-logo-white.svg')}}" alt="" class="light-logo">
+			<!-- <img src="{{asset('logo/Sirindu-white.png')}}" alt="" class="light-logo"> -->
+			<img src="{{asset('logo/Sirindu-allblack.png')}}" alt="" class="dark-logo">
+			<img src="{{asset('logo/Sirindu-white.png')}}" alt="" class="light-logo">
 		</a>
 		<div class="close-sidebar" data-toggle="left-sidebar-close">
 			<i class="ion-close-round"></i>
@@ -29,7 +30,7 @@
 				@elseif (Auth::user()->type == 'admin')
 				<li>
 					<a href="{{Route('admin.home')}}" class="dropdown-toggle no-arrow">
-						<span class="micon fa fa-house"></span><span class="mtext">Home</span>
+						<span class="micon fa fa-home"></span><span class="mtext">Home</span>
 					</a>
 				</li>
 				<li class="dropdown">

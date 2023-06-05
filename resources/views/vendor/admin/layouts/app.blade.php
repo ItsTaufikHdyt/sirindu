@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-            Si Rindu © 2022 | Cyber Creative Team | Diskominfo Kota Bontang | Template by DeskApp
+            Si Rindu © 2022 | Cyber Creative Team | Diskominfo Kota Bontang
             </div>
         </div>
     </div>
