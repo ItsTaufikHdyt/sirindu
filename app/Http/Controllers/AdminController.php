@@ -160,13 +160,14 @@ ANAK
         $anak = Anak::find($id);
         $dataAnak = DB::table('anak')
             ->join('data_anak', 'anak.id', '=', 'data_anak.id_anak')
-            ->select('jk', 'bln', 'posisi', 'tb', 'bb')
+            ->select('jk','tgl_kunjungan', 'bln', 'posisi', 'tb', 'bb')
             ->where('data_anak.id_anak', $id)
             ->get();
         $no = 0;
         foreach ($dataAnak as $key => $data) {
             $no++;
             $tinggi = $data->tb;
+            $tgl_kunjungan = $data->tgl_kunjungan;
             $berat = $data->bb;
             $umur = $data->bln;
             $posisi = $data->posisi;
@@ -318,6 +319,7 @@ ANAK
 
             $hasilx[$key] = array(
                 "bln" => $umur,
+                "tgl_kunjungan" => $tgl_kunjungan,
                 "tinggi" => $tinggi,
                 "berat" => $berat,
                 "imt" => $s1,
@@ -769,6 +771,7 @@ ANAK
                     'Puskesmas' => $data->namePuskes,
                     'Posyandu' => $data->namePos,
                     'RT' => $data->nameRt,
+                    'Tanggal Kunjungan' => $data->tgl_kunjungan,
                     'Bulan' => $data->bln,
                     'Posisi' => $data->posisi,
                     'Tinggi Badan' => $data->tb,

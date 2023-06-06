@@ -92,6 +92,10 @@ Show Data Anak
             <td style="background-color:#e1f1e0">{{$hasil['bln']}}</td>
         </tr>
         <tr>
+            <td>Tanggal Kunjungan</td>
+            <td>{{$hasil['tgl_kunjungan']}}</td>
+        </tr>
+        <tr>
             <td>Tinggi Badan</td>
             <td>{{$hasil['tinggi']}}</td>
         </tr>
