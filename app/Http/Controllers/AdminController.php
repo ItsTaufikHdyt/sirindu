@@ -839,6 +839,14 @@ All User Controller
             return redirect()->route('super.admin.user');
         }
     }
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        $kec = Kecamatan::all();
+        return view('admin.user.edit', compact('user', 'kec'));
+    }
+
     public function updateUser(storeUserRequest $request, $id)
     {
         try {

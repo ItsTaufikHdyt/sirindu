@@ -57,8 +57,7 @@ Data User
                     @endif
                 </th>
                 <th scope="row">
-                    <button data-toggle="modal" data-target="#updateUserModal{{$data->id}}" type="button" class="btn btn-warning">Edit</button>
-                    @include('admin.user.update')
+                    <a href="{{route('super.admin.editUser',$data->id)}}" class="btn btn-warning">Edit</a>
                     <button data-toggle="modal" data-target="#confirmationModal{{$data->id}}" type="button" class="btn btn-danger">Delete</button>
                     @include('admin.user.delete-confirmation')
                 </th>

@@ -8,7 +8,7 @@ use App\Models\User;
 class UserRepository implements UserRepositoryInterface
 {
     protected $user;
-    
+
     public function __contruct(
         user $user
     ) {
@@ -18,7 +18,7 @@ class UserRepository implements UserRepositoryInterface
     public function storeUser($request)
     {
         $user = User::create([
-            
+
             'name' => $request->name,
             'email' => $request->email,
             'type' => $request->type,
@@ -29,19 +29,49 @@ class UserRepository implements UserRepositoryInterface
             'id_posyandu' => $request->id_posyandu,
         ]);
     }
-    public function updateUser($request,$id)
+    public function updateUser($request, $id)
     {
         $user = User::find($id);
-        $user->update([
-            
-            'name' => $request->name,
-            'email' => $request->email,
-            'type' => $request->type,
-            'id_kec' => $request->id_kec,
-            'id_kel' => $request->id_kel,
-            'id_puskesmas' => $request->id_puskesmas,
-            'id_posyandu' => $request->id_posyandu,
-        ]);
+        if ($request->password == null) {
+            if ($request->id_kecx == null) {
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'type' => $request->type,
+                ]);
+            } else {
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'type' => $request->type,
+                    'id_kec' => $request->id_kecx,
+                    'id_kel' => $request->id_kelx,
+                    'id_puskesmas' => $request->id_puskesmasx,
+                    'id_posyandu' => $request->id_posyandux,
+                ]);
+            }
+        }else{
+            if ($request->id_kecx == null) {
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'type' => $request->type,
+                    'password' => bcrypt($request->password),
+                ]);
+            } else {
+                $user->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'type' => $request->type,
+                    'password' => bcrypt($request->password),
+                    'id_kec' => $request->id_kecx,
+                    'id_kel' => $request->id_kelx,
+                    'id_puskesmas' => $request->id_puskesmasx,
+                    'id_posyandu' => $request->id_posyandux,
+                ]);
+            }
+        }
+        
     }
     public function destroyUser($id)
     {

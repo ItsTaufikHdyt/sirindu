@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/',[App\Http\Controllers\Auth\LoginController::class,'showLoginForm']);
 
 Auth::routes();
 
@@ -40,8 +41,10 @@ Route::middleware(['auth', 'user-access:super-admin'])->prefix('super-admin/')->
     //User Route List
     Route::get('user', [App\Http\Controllers\AdminController::class, 'user'])->name('super.admin.user');
     Route::post('store-user', [App\Http\Controllers\AdminController::class, 'storeUser'])->name('super.admin.storeUser');
+    Route::get('edit-user/{id}', [App\Http\Controllers\AdminController::class, 'editUser'])->name('super.admin.editUser');
     Route::put('update-user/{id}', [App\Http\Controllers\AdminController::class, 'updateUser'])->name('super.admin.updateUser');
     Route::delete('delete-user/{id}', [App\Http\Controllers\AdminController::class, 'destroyUser'])->name('super.admin.destroyUser');
+
 });
 
 /*------------------------------------------
