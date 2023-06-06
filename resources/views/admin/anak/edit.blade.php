@@ -232,14 +232,14 @@ Edit Anak
                     <option value="H" @if($data->posisi == 'H') selected @endif>H</option>
                     <option value="L" @if($data->posisi == 'L') selected @endif>L</option>
                 </select>
-                <label>Tinggi Badan</label>
-                <input type="number" name="tb" value="{{$data->tb}}" class="form-control" require>
-                <label>Berat Badan</label>
-                <input type="number" name="bb" value="{{$data->bb}}" class="form-control" require>
-                <label>Lingkar Lengan Atas</label>
-                <input type="number" name="lla" value="{{$data->lla}}" class="form-control" require>
-                <label>Lingkar Kepala</label>
-                <input type="number" name="lk" value="{{$data->lk}}" class="form-control" require>
+                <label>Tinggi Badan <font color="red">* titik (.) untuk koma</font></label>
+                <input type="text" name="tb" value="{{$data->tb}}" class="form-control" require>
+                <label>Berat Badan <font color="red">* titik (.) untuk koma</font></label>
+                <input type="text" name="bb" value="{{$data->bb}}" class="form-control" require>
+                <label>Lingkar Lengan Atas <font color="red">* titik (.) untuk koma</font></label>
+                <input type="text" name="lla" value="{{$data->lla}}" class="form-control" require>
+                <label>Lingkar Kepala <font color="red">* titik (.) untuk koma</font></label>
+                <input type="text" name="lk" value="{{$data->lk}}" class="form-control" require>
                 <label>Asi Ekslusif</label>
                 <select name="asi" class="form-control" require>
                     <option value="0" @if($data->asi == '0') selected @endif>Tidak</option>

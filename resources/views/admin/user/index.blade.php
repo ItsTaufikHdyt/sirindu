@@ -124,50 +124,6 @@ Data User
         });
     });
     
-    $(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('#kecx').on('change', function() {
-            var id = $(this).val();
-            $.ajax({
-                    url: '{{url("admin/get-kel-dasar-anak")}}' + '/' + id,
-                    success: function(response) {
-                        $('#kelx').empty();
-
-                        $.each(response, function(id, name) {
-                            $('#kelx').append(new Option(name, id))
-                        })
-                    }
-                }),
-                $.ajax({
-                    url: '{{url("admin/get-puskesmas-dasar-anak")}}' + '/' + id,
-                    success: function(response) {
-                        $('#puskesmasx').empty();
-
-                        $.each(response, function(id, name) {
-                            $('#puskesmasx').append(new Option(name, id))
-                        })
-                    }
-                })
-        });
-
-        $('#puskesmasx').on('change', function() {
-            var id = $(this).val();
-            $.ajax({
-                url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id,
-                success: function(response) {
-                    $('#posyandux').empty();
-
-                    $.each(response, function(id, name) {
-                        $('#posyandux').append(new Option(name, id))
-                    })
-                }
-            })
-        });
-    });
+   
 </script>
 @endsection
