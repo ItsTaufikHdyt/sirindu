@@ -10,4 +10,9 @@ class DataAnak extends Model
     use HasFactory;
     protected $table = 'data_anak';
     protected $guarded = [];
+
+    public function anak()
+    {
+        return $this->belongsTo(Anak::class);
+    }
 }

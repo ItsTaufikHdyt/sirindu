@@ -19,4 +19,8 @@ class Anak extends Model
     {
         return $this->hasMany(Kelurahan::class,'id','id_kel');
     }
+    public function dataAnak()
+    {
+        return $this->hasMany(DataAnak::class,'id_anak','id');
+    }
 }
