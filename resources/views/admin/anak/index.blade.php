@@ -19,7 +19,7 @@ Anak
     <table id="tabel-anak" class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">No</th>
+                
                 <th scope="col">No KK</th>
                 <th scope="col">NIK</th>
                 <th scope="col">Nama</th>
@@ -43,12 +43,7 @@ Anak
             processing: true,
             serverSide: true,
             ajax: "{{ route('admin.getAnak') }}",
-            columns: [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false
-                },
+            columns: [
                 {
                     data: 'no_kk',
                     name: 'no_kk',

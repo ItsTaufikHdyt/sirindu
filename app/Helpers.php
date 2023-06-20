@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\DB;
 
-function z_score($x)
+function getZscore($x)
 {
-
+    $no = 0;
     foreach ($x as $key => $data) {
+        $no++;
         $tinggi = $data->tb;
+        $tgl_kunjungan = $data->tgl_kunjungan;
         $berat = $data->bb;
         $umur = $data->bln;
         $posisi = $data->posisi;
@@ -146,10 +148,19 @@ function z_score($x)
             $s4 = "Data Tidak Valid";
             // continue;
         }
-
+        // if ($berat < $bt_tb[0]->a4) {
+        //     $s4 = "Sangat Kurus";
+        // } elseif ($berat >= $bt_tb[0]->a4 && $berat < $bt_tb[0]->b4) {
+        //     $s4 = "Kurus";
+        // } elseif ($berat >= $bt_tb[0]->b4 && $berat <= $bt_tb[0]->c4) {
+        //     $s4 = "Normal";
+        // } else {
+        //     $s4 = "Gemuk";
+        // }
 
         $hasilx[$key] = array(
             "bln" => $umur,
+            "tgl_kunjungan" => $tgl_kunjungan,
             "tinggi" => $tinggi,
             "berat" => $berat,
             "imt" => $s1,
@@ -158,5 +169,6 @@ function z_score($x)
             "bt" => $s4
         );
     }
+
     return $hasilx;
 }
