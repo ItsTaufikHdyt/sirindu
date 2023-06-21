@@ -11,6 +11,13 @@ Si Rindu
             </a>
         </div>
         <div class="login-menu">
+            <div class="row justify-content-center">
+                    @if(session('error'))
+                        <div class="alert alert-danger text-center" id="login-error">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+            </div>
         </div>
     </div>
 </div>
@@ -72,4 +79,12 @@ Si Rindu
         </div>
     </div>
 </div>
+<script>
+    setTimeout(function() {
+        var loginError = document.getElementById('login-error');
+        if (loginError) {
+            loginError.style.display = 'none';
+        }
+    }, 3000);
+</script>
 @endsection
