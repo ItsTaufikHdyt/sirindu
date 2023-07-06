@@ -26,7 +26,7 @@ class AnakRepository implements AnakRepositoryInterface
     public function storeAnak($request)
     {
         $lahir = strtotime($request->tgl_lahir);
-        $now = strtotime(date('Y-m-d H:i:s'));
+        $now = strtotime($request->tgl_kunjungan);
         $y1 = date('Y', $lahir);
         $y2 = date('Y', $now);
         $m1 = date('m', $lahir);
@@ -75,7 +75,7 @@ class AnakRepository implements AnakRepositoryInterface
     public function updateAnak($request, $id)
     {
         $lahir = strtotime($request->tgl_lahir);
-        $now = strtotime(date('Y-m-d H:i:s'));
+        $now = strtotime($request->tgl_kunjungan);
         $y1 = date('Y', $lahir);
         $y2 = date('Y', $now);
         $m1 = date('m', $lahir);
