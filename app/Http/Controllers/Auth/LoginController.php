@@ -54,7 +54,7 @@ class LoginController extends Controller
             } else if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.home');
             } else {
-                return redirect()->route('home');
+                return redirect()->route('admin.posyandu.home');
             }
         } else {
             return redirect()->route('login')

@@ -133,6 +133,14 @@ Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
+                <label>RT <font color="red">*</font></label>
+                <select id="rt" name="id_rt" class="form-control" require>
+                    <option value="">== Select RT ==</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="form-group">
                 <label>Posyandu <font color="red">*</font></label>
                 <select id="posyandu" name="id_posyandu" class="form-control" require>
                     <option value="">== Select Posyandu ==</option>
@@ -141,10 +149,8 @@ Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>RT <font color="red">*</font></label>
-                <select id="rt" name="id_rt" class="form-control" require>
-                    <option value="">== Select RT ==</option>
-                </select>
+                <label>Alamat</label>
+                <input type="text" name="alamat" class="form-control">
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
@@ -218,7 +224,7 @@ Anak
                     url: '{{url("admin/get-kel-dasar-anak")}}' + '/' + id,
                     success: function(response) {
                         $('#kel').empty();
-                        $('#kel').append(new Option('====== Kelurahan ======',0));
+                        $('#kel').append(new Option('====== Kelurahan ======', 0));
                         $.each(response, function(id, name) {
                             $('#kel').append(new Option(name, id))
                         })
@@ -228,7 +234,7 @@ Anak
                     url: '{{url("admin/get-puskesmas-dasar-anak")}}' + '/' + id,
                     success: function(response) {
                         $('#puskesmas').empty();
-                        $('#puskesmas').append(new Option('====== Puskesmas ======',0));
+                        $('#puskesmas').append(new Option('====== Puskesmas ======', 0));
                         $.each(response, function(id, name) {
                             $('#puskesmas').append(new Option(name, id))
                         })
@@ -236,13 +242,40 @@ Anak
                 })
         });
 
-        $('#puskesmas').on('change', function() {
+        $('#kel').on('change', function() {
             var id = $(this).val();
             $.ajax({
-                url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id,
+                url: '{{url("admin/get-rt-dasar-anak")}}' + '/' + id,
+                success: function(response) {
+                    $('#rt').empty();
+                    $('#rt').append(new Option('====== RT ======', 0));
+                    $.each(response, function(id, name) {
+                        $('#rt').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+
+
+        $('#rt').on('change', function() {
+            var id = $(this).val();
+            let id_posyandu;
+
+            $.ajax({
+                url: '{{url("admin/get-rt-dasar-anak-posyandu")}}' + '/' + id,
+                async : false,
+            }).done(function(response) {
+                id_posyandu = response[0]
+            }).fail(function(error) {
+                console.log(error)
+            })
+
+            $.ajax({
+                url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id_posyandu,
                 success: function(response) {
                     $('#posyandu').empty();
                     $('#posyandu').append(new Option('====== Posyandu ======',0));
+
                     $.each(response, function(id, name) {
                         $('#posyandu').append(new Option(name, id))
                     })
@@ -250,20 +283,34 @@ Anak
             })
         });
 
-        $('#posyandu').on('change', function() {
-            var id = $(this).val();
-            $.ajax({
-                url: '{{url("admin/get-rt-dasar-anak")}}' + '/' + id,
-                success: function(response) {
-                    $('#rt').empty();
-                    $('#rt').append(new Option('====== RT ======',0));
+                // $('#puskesmas').on('change', function() {
+        //     var id = $(this).val();
+        //     $.ajax({
+        //         url: '{{url("admin/get-posyandu-dasar-anak")}}' + '/' + id,
+        //         success: function(response) {
+        //             $('#posyandu').empty();
+        //             $('#posyandu').append(new Option('====== Posyandu ======',0));
+        //             $.each(response, function(id, name) {
+        //                 $('#posyandu').append(new Option(name, id))
+        //             })
+        //         }
+        //     })
+        // });
 
-                    $.each(response, function(id, name) {
-                        $('#rt').append(new Option(name, id))
-                    })
-                }
-            })
-        });
+        // $('#posyandu').on('change', function() {
+        //     var id = $(this).val();
+        //     $.ajax({
+        //         url: '{{url("admin/get-rt-dasar-anak")}}' + '/' + id,
+        //         success: function(response) {
+        //             $('#rt').empty();
+        //             $('#rt').append(new Option('====== RT ======',0));
+
+        //             $.each(response, function(id, name) {
+        //                 $('#rt').append(new Option(name, id))
+        //             })
+        //         }
+        //     })
+        // });
     });
 </script>
 @endsection

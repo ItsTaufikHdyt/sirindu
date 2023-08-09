@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('nama_ayah');
             $table->integer('jk');
             $table->string('tempat_lahir');
+            $table->text('alamat');
             $table->date('tgl_lahir');
             $table->string('golda');
             $table->integer('anak');

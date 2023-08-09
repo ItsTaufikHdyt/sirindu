@@ -53,6 +53,7 @@ class AnakRepository implements AnakRepositoryInterface
             'id_posyandu' => $request->id_posyandu,
             'id_puskesmas' => $request->id_puskesmas,
             'catatan' => $request->catatan,
+            'alamat' => $request->alamat,
         ]);
 
         DataAnak::create([
@@ -104,6 +105,7 @@ class AnakRepository implements AnakRepositoryInterface
                 'id_posyandu' => $anak->id_posyandu,
                 'id_puskesmas' => $anak->id_puskesmas,
                 'catatan' => $request->catatan,
+                'alamat' => $request->alamat
             ]);
             $dt->update([
                 'bln' => $umur,
@@ -140,6 +142,7 @@ class AnakRepository implements AnakRepositoryInterface
                 'id_posyandu' => $request->id_posyandu,
                 'id_puskesmas' => $request->id_puskesmas,
                 'catatan' => $request->catatan,
+                'alamat' => $request->alamat
             ]);
             $dt->update([
                 'bln' => $umur,

@@ -28,7 +28,7 @@
                         <select class="form-control" name="type">
                             <option value="0">Super Admin</option>
                             <option value="1">Admin</option>
-                            <option value="2">User</option>
+                            <option value="2">Admin Posyandu</option>
                         </select>
                         @error('type') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>

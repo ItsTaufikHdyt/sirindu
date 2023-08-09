@@ -58,11 +58,14 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin/')->group(function () {
     //Anak Route List
     Route::get('data-dasar-anak', [App\Http\Controllers\AdminController::class, 'anak'])->name('admin.anak');
     Route::get('get-data-dasar-anak', [App\Http\Controllers\AdminController::class, 'getAnak'])->name('admin.getAnak');
+    Route::get('get-data-dasar-anak-admin', [App\Http\Controllers\AdminController::class, 'getAnakAdmin'])->name('admin.getAnakAdm');
+    Route::get('get-data-dasar-anak-posyandu', [App\Http\Controllers\AdminController::class, 'getAnakPosyandu'])->name('admin.getAnakPs');
     Route::get('create-data-dasar-anak', [App\Http\Controllers\AdminController::class, 'createAnak'])->name('admin.createAnak');
     Route::get('get-kel-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'getKelAnak'])->name('admin.getKelAnak');
     Route::get('get-puskesmas-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'getPuskesmasAnak'])->name('admin.getPuskesmasAnak');
     Route::get('get-posyandu-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'getPosyanduAnak'])->name('admin.getPosyanduAnak');
     Route::get('get-rt-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'getRtAnak'])->name('admin.getRtAnak');
+    Route::get('get-rt-dasar-anak-posyandu/{id}', [App\Http\Controllers\AdminController::class, 'getRtAnakPosyandu'])->name('admin.getRtAnakPosyandu');
     Route::get('get-posyandu-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'getPosyanduAnak'])->name('admin.getPosyanduAnak');
     Route::post('store-data-dasar-anak', [App\Http\Controllers\AdminController::class, 'storeAnak'])->name('admin.storeAnak');
     Route::get('edit-data-dasar-anak/{id}', [App\Http\Controllers\AdminController::class, 'editAnak'])->name('admin.editAnak');
@@ -88,4 +91,13 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin/')->group(function () {
     Route::get('data-ibu', [App\Http\Controllers\AdminController::class, 'ibu'])->name('admin.ibu');
     //Ibu Hamil Route List
     Route::get('data-ibu-hamil', [App\Http\Controllers\AdminController::class, 'ibuHamil'])->name('admin.ibuHamil');
+});
+
+/*------------------------------------------
+--------------------------------------------
+All Admin Posyandu Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::middleware(['auth', 'user-access:posyandu'])->prefix('admin-posyandu/')->group(function () {
+    Route::get('home', [App\Http\Controllers\AdminController::class, 'adminPosyanduHome'])->name('admin.posyandu.home');
 });

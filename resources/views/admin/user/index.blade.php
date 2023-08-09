@@ -48,8 +48,8 @@ Data User
                 <th scope="row">{{$data->name}}</th>
                 <th scope="row">{{$data->email}}</th>
                 <th scope="row">
-                    @if ($data->type == 'user')
-                    <span class="badge badge-primary">User</span>
+                    @if ($data->type == 'posyandu')
+                    <span class="badge badge-primary">Admin Posyandu</span>
                     @elseif ($data->type == 'super-admin')
                     <span class="badge badge-info">Super Admin</span>
                     @elseif ($data->type == 'admin')

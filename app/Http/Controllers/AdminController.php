@@ -91,6 +91,76 @@ ANAK
             ->make(true);
     }
 
+    public function getAnakAdmin()
+    {
+        $data = Anak::select('id', 'no_kk', 'nik', 'nama', 'nik_ortu', 'nama_ibu', 'nama_ayah', 'jk', 'tempat_lahir', 'tgl_lahir')
+        ->where('id_puskesmas',Auth::user()->id_puskesmas);
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->editColumn('edit', function ($data) {
+                //$btn = '<a class="btn btn-warning" href="#" target="_blank">edit</a>';
+                $btn = '
+                <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Edit
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="' . route('admin.editAnak', $data->id) . '">Edit Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.chartAnak', $data->id) . '">Grafik Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.showAnak', $data->id) . '">Show Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.dataAnak', $data->id) . '">Tambah Data Berkala Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.dataImunisasi', $data->id) . '">Data Imunisasi Anak</a>
+                </div>
+                </div>
+                ';
+                return $btn;
+            })
+            ->setRowId('id')
+            ->editColumn('delete', function ($data) {
+                $btn = ' <button onclick="deleteItemAnak(this)" class="btn btn-danger" data-id=' . $data->id . '>Delete</button>';
+                return $btn;
+            })
+            ->rawColumns(['edit'])
+            ->rawColumns(['delete'])
+            ->escapeColumns([])
+            ->make(true);
+    }
+
+    public function getAnakPosyandu()
+    {
+        $data = Anak::select('id', 'no_kk', 'nik', 'nama', 'nik_ortu', 'nama_ibu', 'nama_ayah', 'jk', 'tempat_lahir', 'tgl_lahir')
+        ->where('id_posyandu',Auth::user()->id_posyandu);
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->editColumn('edit', function ($data) {
+                //$btn = '<a class="btn btn-warning" href="#" target="_blank">edit</a>';
+                $btn = '
+                <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   Edit
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="' . route('admin.editAnak', $data->id) . '">Edit Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.chartAnak', $data->id) . '">Grafik Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.showAnak', $data->id) . '">Show Data Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.dataAnak', $data->id) . '">Tambah Data Berkala Anak</a>
+                    <a class="dropdown-item" href="' . route('admin.dataImunisasi', $data->id) . '">Data Imunisasi Anak</a>
+                </div>
+                </div>
+                ';
+                return $btn;
+            })
+            ->setRowId('id')
+            ->editColumn('delete', function ($data) {
+                $btn = ' <button onclick="deleteItemAnak(this)" class="btn btn-danger" data-id=' . $data->id . '>Delete</button>';
+                return $btn;
+            })
+            ->rawColumns(['edit'])
+            ->rawColumns(['delete'])
+            ->escapeColumns([])
+            ->make(true);
+    }
+
 
     public function createAnak()
     {
@@ -113,14 +183,31 @@ ANAK
 
     public function getRtAnak($id)
     {
-        $rt = Rt::where('id_posyandu', $id)->pluck('name', 'id');
+        $rt = Rt::where('id_kelurahan', $id)->pluck('name', 'id', 'id_posyandu');
         return response()->json($rt);
     }
+    public function getRtAnakPosyandu($id)
+    {
+        $rt = Rt::where('id', $id)->pluck('id_posyandu');
+        return response()->json($rt);
+    }
+
+    // public function getRtAnak($id)
+    // {
+    //     $rt = Rt::where('id_posyandu', $id)->pluck('name', 'id');
+    //     return response()->json($rt);
+    // }
+    
     public function getPosyanduAnak($id)
     {
-        $posyandu = Posyandu::where('id_puskesmas', $id)->pluck('name', 'id');
+        $posyandu = Posyandu::where('id', $id)->pluck('name', 'id');
         return response()->json($posyandu);
     }
+    // public function getPosyanduAnak($id)
+    // {
+    //     $posyandu = Posyandu::where('id_puskesmas', $id)->pluck('name', 'id');
+    //     return response()->json($posyandu);
+    // }
 
     public function editAnak($id)
     {
@@ -652,13 +739,22 @@ All Super Admin Controller
     }
     /*------------------------------------------
 --------------------------------------------
+All Admin Posyandu Controller
+--------------------------------------------
+--------------------------------------------*/
+    public function adminPosyanduHome()
+    {
+        return view('admin.dashboard.posyandu');
+    }
+ /*------------------------------------------
+--------------------------------------------
 All Admin Controller
 --------------------------------------------
 --------------------------------------------*/
-    public function adminHome()
-    {
-        return view('admin.dashboard.admin');
-    }
+public function adminHome()
+{
+    return view('admin.dashboard.admin');
+}
     /*------------------------------------------
 --------------------------------------------
 All User Controller

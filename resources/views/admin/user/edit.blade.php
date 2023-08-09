@@ -48,7 +48,7 @@ Edit User
                 <select class="form-control" name="type">
                     <option value="0" {{$user->type == 'super-admin' ? 'selected' : ''}}>Super Admin</option>
                     <option value="1" {{$user->type == 'admin' ? 'selected' : ''}}>Admin</option>
-                    <option value="2" {{$user->type == 'user' ? 'selected' : ''}}>User</option>
+                    <option value="2" {{$user->type == 'posyandu' ? 'selected' : ''}}>Admin Posyandu</option>
                 </select>
                 @error('type') <span class="text-danger">{{ $message }}</span>@enderror
             </div>
