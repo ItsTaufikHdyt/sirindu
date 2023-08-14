@@ -137,17 +137,17 @@ Edit Anak
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>Posyandu <font color="red">*</font></label>
-                <select id="posyandu" name="id_posyandu" class="form-control" disabled="true" require>
-                    <option value="">== Select Posyandu ==</option>
+                <label>RT <font color="red">*</font></label>
+                <select id="rt" name="id_rt" class="form-control" disabled="true" require>
+                    <option value="">== Select RT ==</option>
                 </select>
             </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <div class="form-group">
-                <label>RT <font color="red">*</font></label>
-                <select id="rt" name="id_rt" class="form-control" disabled="true" require>
-                    <option value="">== Select RT ==</option>
+                <label>Posyandu <font color="red">*</font></label>
+                <select id="posyandu" name="id_posyandu" class="form-control" disabled="true" require>
+                    <option value="">== Select Posyandu ==</option>
                 </select>
             </div>
         </div>

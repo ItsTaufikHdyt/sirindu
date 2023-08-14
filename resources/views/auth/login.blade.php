@@ -12,11 +12,11 @@ Si Rindu
         </div>
         <div class="login-menu">
             <div class="row justify-content-center">
-                    @if(session('error'))
-                        <div class="alert alert-danger text-center" id="login-error">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+                @if(session('error'))
+                <div class="alert alert-danger text-center" id="login-error">
+                    {{ session('error') }}
+                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -55,17 +55,19 @@ Si Rindu
                                 <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                             </div>
                         </div>
-                        <!-- <div class="row pb-30">
-                            <div class="col-6">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Remember</label>
-                                </div>
+                        <div class="input-group custom">
+                            <div class="captcha">
+                                <span>{!! captcha_img('math') !!}</span>
+                                <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                    &#x21bb;
+                                </button>
                             </div>
-                            <div class="col-6">
-                                <div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
+                        </div>
+                        <div class="input-group custom">
+                            <div class="form-group mb-4">
+                                <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
                             </div>
-                        </div> -->
+                        </div>
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="input-group mb-0">
@@ -79,7 +81,17 @@ Si Rindu
         </div>
     </div>
 </div>
-<script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $('#reload').click(function() {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function(data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
+    });
     setTimeout(function() {
         var loginError = document.getElementById('login-error');
         if (loginError) {
