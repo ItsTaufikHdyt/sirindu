@@ -28,4 +28,5 @@ Route::get('/get-puskesmas/{id}', [App\Http\Controllers\ApiController::class, 'g
 Route::get('/get-kelurahan/{id}', [App\Http\Controllers\ApiController::class, 'getKelApi']);
 Route::get('/get-rt/{id}', [App\Http\Controllers\ApiController::class, 'getRtApi']);
 Route::get('/get-posyandu/{id}', [App\Http\Controllers\ApiController::class, 'getPosyanduApi']);
+Route::get('/get-stunting/tgl_kunjungan/{tgl_kunjungan}/jk/{jk}/bln/{bln}/posisi/{posisi}/tb/{tb}/bb/{bb}', [App\Http\Controllers\ApiController::class, 'getStuntingApi']);
 

@@ -251,7 +251,7 @@ ANAK
             ->select('jk','tgl_kunjungan', 'bln', 'posisi', 'tb', 'bb')
             ->where('data_anak.id_anak', $id)
             ->get();
-           
+        dd($dataAnak);
         $hasilx = getZscore($dataAnak);
         return view('admin.anak.show', compact('anak'))->with('hasilx', $hasilx);
     }

@@ -20,7 +20,7 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $all,
-        ],201);
+        ], 201);
     }
 
     public function allDataDasarAnak()
@@ -29,7 +29,7 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $anak,
-        ],201);
+        ], 201);
     }
 
     public function showDataDasarAnak($id)
@@ -38,17 +38,17 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $anak,
-        ],201);
+        ], 201);
     }
 
     public function showAllDataAnak($id)
     {
         $anak = Anak::with("dataAnak")->findOrFail($id);
-        
+
         return response()->json([
             'success' => true,
             'data' => $anak,
-        ],201);
+        ], 201);
     }
 
     public function getKecApi()
@@ -57,7 +57,7 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $kec,
-        ],201);
+        ], 201);
     }
 
     public function getPuskesmasApi($id)
@@ -66,7 +66,7 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $puskesmas,
-        ],201);
+        ], 201);
     }
 
     public function getKelApi($id)
@@ -75,7 +75,7 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $kel,
-        ],201);
+        ], 201);
     }
 
     public function getRtApi($id)
@@ -84,7 +84,7 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $rt,
-        ],201);
+        ], 201);
     }
 
     public function getPosyanduApi($id)
@@ -93,6 +93,26 @@ class ApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $posyandu,
-        ],201);
+        ], 201);
+    }
+
+    public function getStuntingApi(Request $request)
+    {
+        $datacollection = collect([
+            (object)[
+                'tgl_kunjungan' => $request->tgl_kunjungan,
+                'jk' => (int)$request->jk,
+                'bln' => (int)$request->bln,
+                'posisi' => $request->posisi,
+                'tb' => (float)$request->tb,
+                'bb' => (float)$request->bb,
+            ]
+        ]);
+        
+        $hasilx = getZscore($datacollection);
+        return response()->json([
+            'success' => true,
+            'data' => $hasilx,
+        ], 201);
     }
 }
