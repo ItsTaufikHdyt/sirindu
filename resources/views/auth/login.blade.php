@@ -6,12 +6,22 @@ Si Rindu
 <div class="login-header box-shadow">
     <div class="container-fluid d-flex justify-content-between align-items-center">
         <div class="brand-logo">
-            <a href="login.html">
+            <a href="#">
                 <img src="{{asset('logo/Sirindu-black.png')}}" alt="">
             </a>
         </div>
         <div class="login-menu">
+
             <div class="row justify-content-center">
+                <a target="_blank" href="https://sikda.bontangkota.go.id/login">
+                    SIKDA
+                </a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="#login">
+                    LOGIN
+                </a>
+
+
                 @if(session('error'))
                 <div class="alert alert-danger text-center" id="login-error">
                     {{ session('error') }}
@@ -21,7 +31,11 @@ Si Rindu
         </div>
     </div>
 </div>
-<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+<div class="embed-responsive embed-responsive-21by9" id="chart">
+    <iframe class="embed-responsive-item" style="border:2px solid #ecf0f4;" src="https://sikda.bontangkota.go.id/operasitimbang" loading="lazy">
+    </iframe>
+</div>
+<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center" id="login">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 col-lg-7">
@@ -81,10 +95,7 @@ Si Rindu
         </div>
     </div>
 </div>
-<div class="embed-responsive embed-responsive-21by9">
-    <iframe class="embed-responsive-item" src="https://sikda.bontangkota.go.id/operasitimbang" loading="lazy">
-    </iframe>
-</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
