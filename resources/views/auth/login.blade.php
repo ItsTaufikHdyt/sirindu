@@ -81,6 +81,12 @@ Si Rindu
         </div>
     </div>
 </div>
+<div class="embed-responsive embed-responsive-21by9">
+    <iframe class="embed-responsive-item" src="https://sikda.bontangkota.go.id/operasitimbang" loading="lazy">
+    </iframe>
+</div>
+
+
 <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $('#reload').click(function() {

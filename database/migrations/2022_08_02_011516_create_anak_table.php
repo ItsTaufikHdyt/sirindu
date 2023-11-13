@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('anak', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('no_kk');
-            $table->string('nik')->unique();
+            $table->uuid('id',32)->primary();
+            $table->string('no_kk',16);
+            $table->string('nik',16)->unique();
             $table->string('nama');
-            $table->string('nik_ortu');
+            $table->string('nik_ortu',16);
             $table->string('nama_ibu');
             $table->string('nama_ayah');
             $table->integer('jk');
@@ -26,13 +26,13 @@ return new class extends Migration
             $table->text('alamat');
             $table->date('tgl_lahir');
             $table->string('golda');
-            $table->integer('anak');
-            $table->string('no');
+            $table->integer('anak')->nullable();
+            $table->string('no')->nullable();
             $table->integer('status');
             $table->bigInteger('id_kec');
             $table->bigInteger('id_kel');
-            $table->integer('id_rt');
-            $table->integer('id_posyandu');
+            $table->integer('id_rt')->nullable();
+            $table->integer('id_posyandu')->nullable();
             $table->integer('id_puskesmas');
             $table->text('catatan');
             //imunisasi
